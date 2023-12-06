@@ -1,40 +1,37 @@
 <template>
     <tr>
         <td>
-            {{ utilisateur.prenom }}
+            {{ programme.nomDuProgramme }}
         </td>
         <td>
-            {{ utilisateur.nom }}
+            {{ programme.dateDeDebut }}
         </td>
         <td>
-            {{ utilisateur.email }}
+            {{ programme.dateDeFin }}
         </td>
-        <td>
-            {{ utilisateur.dateDeNaissance }}
-        </td>
-        <td><button @click="allerADetail" class="btn btn-primary">Details</button>
-            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button>
+        
+        <td><button @click="allerADetail" class="btn btn-primary">Details</button> 
+            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button> 
             <button class="btn btn-danger" @click="gererSuppression"> Supprimer</button>
-        </td>
+            </td>
     </tr>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+    import { ref, reactive } from 'vue';
 
-//Importer le module qui permet la reidrection vers une autre page
+    //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
 const router=useRouter()
 
 const props = defineProps({
-    etudiant: {
+    programme: {
         type: Object,
         default: () => ({
             id: '',
-            nom: 'test',
-            prenom: 'test',
-            email: 'test',
-            dateDeNaissance: 'test'
+            nomDuProgramme:'',
+            dateDeDebut: 'test',
+            dateDeFin: 'test',            
         })
     }
 })
@@ -43,21 +40,22 @@ const emit = defineEmits(['supprimer', 'editer'])
 
 const gererSuppression = () => {
     console.log("Bouton ici")
-    console.log("ID ici", props.etudiant.id)
-    emit('supprimer', props.etudiant.id)
-
+    console.log("ID ici", props.programme.id)
+    emit('supprimer', props.programme.id)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerADetail=()=>{
-    router.push(`/details/${props.etudiant.id}`)
+    router.push(`/details/${props.programme.id}`)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerAMiseAJour=()=>{
-    router.push(`/mise-a-jour/${props.etudiant.id}`)
+    router.push(`/mise-a-jour/${props.programme.id}`)
 }
-
+    
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+
+</style>

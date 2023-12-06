@@ -2,26 +2,18 @@
     <div>
         <form @submit.prevent="mettreAJour">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
+                <label for="nom" class="form-label">Nom du programme</label>
+                <input v-model="programme.nomDuProgramme" type="text" class="form-control" id="nomDuProgramme">
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
+                <label for="nom" class="form-label">Date de debut</label>
+                <input v-model="programme.dateDeDebut" type="text" class="form-control" id="dateDeDebut">
             </div>
             <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
+                <label for="prenom" class="form-label">Date de fin</label>
+                <input v-model="programme.dateDeFin" type="text" class="form-control" id="dateDeFin">
             </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
-            </div>
+            
             <button type="submit" class="btn btn-primary">Mettre a jour</button>
         </form>
     </div>
@@ -34,19 +26,19 @@ const route = useRoute()
 const { id } = route.params
 
 const router = useRouter()
-const etudiant = ref({})
+const programme = ref({})
 
-import useEtudiant from '../../services/serviceEtudiant';
-const { getEtudiantById, mettreAJourEtudiant } = useEtudiant()
+import useProgramme from '../../services/serviceProgramme';
+const { getProgrammeById, updateProgramme } = useProgramme()
 
 onBeforeMount(() => {
-    if (id) getEtudiantById(id).then(data => {
-        etudiant.value = data
+    if (id) getProgrammeById(id).then(data => {
+        programme.value = data
     }).catch(err => console.log('erreur mise a jour', err))
 })
 
 const mettreAJour = () => {
-    mettreAJourEtudiant(id, etudiant.value).then(() => {
+    updateProgramme(id, programme.value).then(() => {
         router.push('/')
     }).catch(err => console.log('Probleme lors de la mise a jour', err))
 }

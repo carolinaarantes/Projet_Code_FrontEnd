@@ -2,62 +2,57 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Email</th>
-                <th>Date de naissance</th>
-                <th>Actions</th>
+                <th>Nom du programme</th>
+                <th>Date de debut</th>
+                <th>Date de fin</th>
             </tr>
         </thead>
         <tbody>
-            <Etudiant v-for="student in etudiants" :key="student.id" :etudiant="student" @supprimer="supprimer" />
+            <Programme v-for="calendar in programmes" :key="calendar.id" :programme="calendar" @supprimer="supprimer" />
         </tbody>
     </table>
-    <button class="btn btn-primary" @click="allerAJouterEtudiant">Ajouter un etudiant</button>
+    <button class="btn btn-primary" @click="allerAjouterProgramme">Ajouter un programme</button>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-
-const etudiants = ref([])
-import useEtudiant from '../../services/serviceEtudiant.js'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onBeforeMount } from 'vue';
+const programmes = ref([])
+import useProgramme from '../../services/serviceProgramme.js'
 const router = useRouter()
 
-const { getEtudiants, supprimerEtudiant } = useEtudiant()
+const { listeProgrammes, supprimerProgramme } = useProgramme()
 onBeforeMount(() => {
 
-    getEtudiants().then(data => {
-        etudiants.value = data
+    listeProgrammes().then(data => {
+        progtammes.value = data
 
-        console.log('Liste etudiant', data)
+        console.log('Liste programme', data)
     })
 
-
 })
-import Etudiant from './Etudiant.vue';
+import Programme from './Programme.vue'
 
 const supprimer = (id) => {
     console.log('emits', id)
-    supprimerEtudiant(id).then((data) => {
+    supprimerProgramme(id).then((data) => {
         console.log('suppression', data)
-        getEtudiants().then(data => {
-            etudiants.value = data
+        listeProgrammes().then(data => {
+            programmes.value = data
 
-            console.log('Liste etudiant', data)
+            console.log('Liste programmes', data)
         }).catch(err => {
             console.log(err.message)
         })
 
     })
-
 }
 
-const allerAJouterEtudiant = () => {
+const allerAjouterProgramme = () => {
     router.push('/ajout')
 }
 
-
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

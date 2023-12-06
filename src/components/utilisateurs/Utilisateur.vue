@@ -1,40 +1,48 @@
 <template>
     <tr>
         <td>
-            {{ utilisateur.prenom }}
+            {{ utilisateur.photo }}
         </td>
         <td>
             {{ utilisateur.nom }}
         </td>
         <td>
-            {{ utilisateur.email }}
+            {{ utilisateur.prenom }}
         </td>
         <td>
             {{ utilisateur.dateDeNaissance }}
         </td>
-        <td><button @click="allerADetail" class="btn btn-primary">Details</button>
-            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button>
-            <button class="btn btn-danger" @click="gererSuppression"> Supprimer</button>
+        <td>
+            {{ utilisateur.telephone }}
         </td>
+        <td>
+            {{ utilisateur.email }}
+        </td>
+        <td><button @click="allerADetail" class="btn btn-primary">Details</button> 
+            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button> 
+            <button class="btn btn-danger" @click="gererSuppression"> Supprimer</button>
+            </td>
     </tr>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+    import { ref, reactive } from 'vue';
 
-//Importer le module qui permet la reidrection vers une autre page
+    //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
 const router=useRouter()
 
 const props = defineProps({
-    etudiant: {
+    utilisateur: {
         type: Object,
         default: () => ({
             id: '',
+            photo:'',
             nom: 'test',
             prenom: 'test',
-            email: 'test',
-            dateDeNaissance: 'test'
+            dateDeNaissance: 'test',
+            telephone: 'test',
+            email: 'test',            
         })
     }
 })
@@ -43,21 +51,22 @@ const emit = defineEmits(['supprimer', 'editer'])
 
 const gererSuppression = () => {
     console.log("Bouton ici")
-    console.log("ID ici", props.etudiant.id)
-    emit('supprimer', props.etudiant.id)
-
+    console.log("ID ici", props.utilisateur.id)
+    emit('supprimer', props.utilisateur.id)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerADetail=()=>{
-    router.push(`/details/${props.etudiant.id}`)
+    router.push(`/details/${props.utilisateur.id}`)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerAMiseAJour=()=>{
-    router.push(`/mise-a-jour/${props.etudiant.id}`)
+    router.push(`/mise-a-jour/${props.utilisateur.id}`)
 }
-
+    
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+
+</style>

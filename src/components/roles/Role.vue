@@ -1,21 +1,13 @@
 <template>
     <tr>
         <td>
-            {{ utilisateur.prenom }}
+            {{ role.categorie }}
         </td>
-        <td>
-            {{ utilisateur.nom }}
-        </td>
-        <td>
-            {{ utilisateur.email }}
-        </td>
-        <td>
-            {{ utilisateur.dateDeNaissance }}
-        </td>
-        <td><button @click="allerADetail" class="btn btn-primary">Details</button>
-            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button>
+       
+        <td><button @click="allerADetail" class="btn btn-primary">Details</button> 
+            <button @click="allerAMiseAJour" class="btn btn-success">Editer</button> 
             <button class="btn btn-danger" @click="gererSuppression"> Supprimer</button>
-        </td>
+            </td>
     </tr>
 </template>
 
@@ -27,14 +19,11 @@ import { useRouter } from 'vue-router';
 const router=useRouter()
 
 const props = defineProps({
-    etudiant: {
+    role: {
         type: Object,
         default: () => ({
             id: '',
-            nom: 'test',
-            prenom: 'test',
-            email: 'test',
-            dateDeNaissance: 'test'
+            categorie:'',            
         })
     }
 })
@@ -43,23 +32,22 @@ const emit = defineEmits(['supprimer', 'editer'])
 
 const gererSuppression = () => {
     console.log("Bouton ici")
-    console.log("ID ici", props.etudiant.id)
-    emit('supprimer', props.etudiant.id)
-
+    console.log("ID ici", props.role.id)
+    emit('supprimer', props.role.id)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerADetail=()=>{
-    router.push(`/details/${props.etudiant.id}`)
+    router.push(`/details/${props.role.id}`)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerAMiseAJour=()=>{
-    router.push(`/mise-a-jour/${props.etudiant.id}`)
+    router.push(`/mise-a-jour/${props.role.id}`)
 }
-
+    
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

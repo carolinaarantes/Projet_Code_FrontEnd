@@ -1,10 +1,7 @@
 <template>
     <div>
-        <h1>Profil de {{ etudiant.nom }} {{ etudiant.prenom }}</h1>
-        <p>Biographie</p>
-        <div>Email: {{ etudiant.email }}</div>
-        <div>Date de naissance: {{ etudiant.dateDeNaissance }}</div>
-
+        <p>Role</p>
+        <div>Categorie: {{ role.categorie }}</div>
     </div>
 </template>
 
@@ -15,22 +12,22 @@ import { ref, reactive, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute()
 console.log('route', route)
-const { id } = route.params
+const { id } = route.params 
 
-// Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
-import useEtudiant from '../../services/serviceEtudiant';
+// Fonction/Service qui permet de recuperer un role depuis la base de donnees
+import useRole from '../../services/serviceRole';
 
-const { getEtudiantById } = useEtudiant()
+const { getRoleById } = useRole()
 
-const etudiant = ref({})
+const role = ref({})
 
 onBeforeMount(() => {
 
     if (id)
-        getEtudiantById(id).then((data) => {
-            console.log('Etudiant', data)
-            etudiant.value = data
-        }).catch(err => console.log('Detail etudiant', err))
+        getRoleById(id).then((data) => {
+            console.log('Role', data)
+            role.value = data
+        }).catch(err => console.log('Detail role', err))
 
 })
 

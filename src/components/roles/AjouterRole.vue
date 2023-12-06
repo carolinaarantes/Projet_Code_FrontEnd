@@ -2,26 +2,10 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
-            </div>
-            <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
-            </div>
-            <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
+                <label for="nom" class="form-label">Categorie</label>
+                <input v-model="role.categorie" type="text" class="form-control" id="categorie">
             </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
-            </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>
@@ -30,21 +14,17 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useEtudiant from '../../services/serviceEtudiant';
+import useRole from '../../services/serviceRole';
 const router = useRouter()
-const { ajouterEtudiant } = useEtudiant()
+const { ajouterRole } = useRole()
 
-const etudiant = ref({
-    nom: '',
-    prenom: '',
-    dateDeNaissance: '',
-    email: '',
-    motDePasse: ''
+const role = ref({
+    categorie: '',
 })
 
 const soumettre = () => {
-    console.log('etudiant', etudiant.value)
-    ajouterEtudiant(etudiant.value).then(() => {
+    console.log('role', role.value)
+    ajouterRole(role.value).then(() => {
         router.push('/')
     }).catch(err => console.log("Probleme lors de l'ajout", err))
 }
