@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1>Profil de {{ etudiant.nom }} {{ etudiant.prenom }}</h1>
-        <p>Biographie</p>
-        <div>Email: {{ etudiant.email }}</div>
-        <div>Date de naissance: {{ etudiant.dateDeNaissance }}</div>
-
+        <h1>Profil de {{ utilisateur.photo }} {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1> <!--avec photo?-->
+        <p>Biographie</p>        
+        <div>Email: {{ utilisateur.email }}</div>
+        <div>Telephone: {{ utilisateur.telephone }}</div>
+        <div>Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
     </div>
 </template>
 
@@ -17,20 +17,20 @@ const route = useRoute()
 console.log('route', route)
 const { id } = route.params
 
-// Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
-import useEtudiant from '../../services/serviceEtudiant';
+// Fonction/Service qui permet de recuperer un utilisateur depuis la base de donnees
+import useUtilisateur from '../../services/serviceUtilisateur';
 
-const { getEtudiantById } = useEtudiant()
+const { getUtilisateurById } = useUtilisateur()
 
-const etudiant = ref({})
+const utilisateur = ref({})
 
 onBeforeMount(() => {
 
     if (id)
-        getEtudiantById(id).then((data) => {
-            console.log('Etudiant', data)
-            etudiant.value = data
-        }).catch(err => console.log('Detail etudiant', err))
+        getUtilisateurById(id).then((data) => {
+            console.log('Utilisateur', data)
+            utilisateur.value = data
+        }).catch(err => console.log('Detail utilisateur', err))
 
 })
 

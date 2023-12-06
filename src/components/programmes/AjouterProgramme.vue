@@ -2,49 +2,39 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
+                <label for="nom" class="form-label">Nom du programme</label>
+                <input v-model="programme.nomDuProgramme" type="text" class="form-control" id="nomDuProgramme">
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
+                <label for="nom" class="form-label">Date de debut</label>
+                <input v-model="programme.dateDeDebut" type="text" class="form-control" id="dateDeDebut">
             </div>
             <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
+                <label for="prenom" class="form-label">Date de fin</label>
+                <input v-model="programme.dateDeFin" type="text" class="form-control" id="dateDeFin">
             </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
-            </div>
+           
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>
-</template>
+</template>/
 
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useEtudiant from '../../services/serviceEtudiant';
+import useProgramme from '../../services/serviceProgramme';
 const router = useRouter()
-const { ajouterEtudiant } = useEtudiant()
+const { ajouterProgramme } = useProgramme()
 
-const etudiant = ref({
-    nom: '',
-    prenom: '',
-    dateDeNaissance: '',
-    email: '',
-    motDePasse: ''
+const programme = ref({
+    nomDuProgramme: '',
+    dateDeDebut: '',
+    dateDeFin: '',
 })
 
 const soumettre = () => {
-    console.log('etudiant', etudiant.value)
-    ajouterEtudiant(etudiant.value).then(() => {
+    console.log('programme', programme.value)
+    ajouterProgramme(programme.value).then(() => {
         router.push('/')
     }).catch(err => console.log("Probleme lors de l'ajout", err))
 }

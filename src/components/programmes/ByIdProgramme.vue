@@ -1,10 +1,9 @@
 <template>
     <div>
-        <h1>Profil de {{ etudiant.nom }} {{ etudiant.prenom }}</h1>
-        <p>Biographie</p>
-        <div>Email: {{ etudiant.email }}</div>
-        <div>Date de naissance: {{ etudiant.dateDeNaissance }}</div>
-
+        <p>Programme</p> 
+        <div>Nom du programme: {{ programme.nomDuProgramme }}</div>
+        <div>Date de debut: {{ programme.dateDeDebut }}</div>
+        <div>Date de fin: {{ programme.dateDeFin }}</div>
     </div>
 </template>
 
@@ -17,20 +16,20 @@ const route = useRoute()
 console.log('route', route)
 const { id } = route.params
 
-// Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
-import useEtudiant from '../../services/serviceEtudiant';
+// Fonction/Service qui permet de recuperer un programme depuis la base de donnees
+import useProgramme from '../../services/serviceProgramme';
 
-const { getEtudiantById } = useEtudiant()
+const { getProgrammeById } = useProgramme()
 
-const etudiant = ref({})
+const programme = ref({})
 
 onBeforeMount(() => {
 
     if (id)
-        getEtudiantById(id).then((data) => {
-            console.log('Etudiant', data)
-            etudiant.value = data
-        }).catch(err => console.log('Detail etudiant', err))
+    getProgrammeById(id).then((data) => {
+            console.log('programme', data)
+            programme.value = data
+        }).catch(err => console.log('Detail programme', err))
 
 })
 
