@@ -2,25 +2,24 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
+                <label for="matiere" class="form-label">Matière</label>
+                <input v-model="examen.matiere" type="text" class="form-control" id="matiere">
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
+                <label for="date_examen" class="form-label">Date de l'examen</label>
+                <input v-model="examen.date_examen" type="date" class="form-control" id="date_examen">
             </div>
             <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
+                <label for="horaire_de_debut" class="form-label">Horaire de début du cour</label>
+                <input v-model="examen.horaire_de_debut" type="date" class="form-control" id="horaire_de_debut">
             </div>
             <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
+                <label for="horaire_de_fin" class="form-label">Horaire de fin du cour</label>
+                <input v-model="examen.horaire_de_fin" type="date" class="form-control" id="horaire_de_fin">
+            </div>
+            <div class="mb-3">
+                <label for="salle_examen" class="form-label">Salle d'examen</label>
+                <input v-model="examen.salle_examen" type="text" class="form-control" id="salle_examen">
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
@@ -30,23 +29,23 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useEtudiant from '../../services/serviceEtudiant';
+import useExamen from '../services/serviceExamen';
 const router = useRouter()
-const { ajouterEtudiant } = useEtudiant()
+const { ajouterExamen } = useExamen()
 
-const etudiant = ref({
-    nom: '',
-    prenom: '',
-    dateDeNaissance: '',
-    email: '',
-    motDePasse: ''
+const examen = ref({
+    matiere: '',
+    date_examen: '',
+    horaire_de_debut: '',
+    horaire_de_fin: '',
+    salle_examen: ''
 })
 
 const soumettre = () => {
-    console.log('etudiant', etudiant.value)
-    ajouterEtudiant(etudiant.value).then(() => {
+    console.log('examen', examen.value)
+    ajouterExamen(examen.value).then(() => {
         router.push('/')
-    }).catch(err => console.log("Probleme lors de l'ajout", err))
+    }).catch(err => console.log("Probleme lors de l'ajout de l'examen", err))
 }
 </script>
 
