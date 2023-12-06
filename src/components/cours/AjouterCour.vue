@@ -2,26 +2,18 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
+                <label for="nom_du_cour" class="form-label">Nom du cour</label>
+                <input v-model="cour.nom_du_cour" type="text" class="form-control" id="nom_du_cour">
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
+                <label for="salle_du_cours" class="form-label">Salle de cours</label>
+                <input v-model="cour.salle_du_cours" type="text" class="form-control" id="salle_du_cours">
             </div>
             <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
+                <label for="credits" class="form-label">Credits</label>
+                <input v-model="cour.credits" type="text" class="form-control" id="credits">
             </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
-            </div>
+            
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>
@@ -30,23 +22,21 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useEtudiant from '../../services/serviceEtudiant';
+import useCour from '../services/serviceCour';
 const router = useRouter()
-const { ajouterEtudiant } = useEtudiant()
+const { ajouterCour } = useCour()
 
-const etudiant = ref({
-    nom: '',
-    prenom: '',
-    dateDeNaissance: '',
-    email: '',
-    motDePasse: ''
+const cour = ref({
+    nom_du_cour: '',
+    salle_du_cours: '',
+    credits: ''    
 })
 
 const soumettre = () => {
-    console.log('etudiant', etudiant.value)
-    ajouterEtudiant(etudiant.value).then(() => {
+    console.log('cour', cour.value)
+    ajouterCour(cour.value).then(() => {
         router.push('/')
-    }).catch(err => console.log("Probleme lors de l'ajout", err))
+    }).catch(err => console.log("Probleme lors de l'ajout du cour", err))
 }
 </script>
 

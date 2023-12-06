@@ -1,53 +1,40 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre">
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input v-model="etudiant.nom" type="text" class="form-control" id="nom">
-            </div>
-            <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input v-model="etudiant.prenom" type="text" class="form-control" id="prenom">
-            </div>
-            <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="etudiant.dateDeNaissance" type="date" class="form-control" id="naissance">
-            </div>
+        <h1>L'examen {{ examen.matiere }}</h1>
+        <div>Date de l'examen: {{ examen.date_examen }}</div>
+        <div>Horaire de début: {{ examen.horaire_de_debut }}</div>
+        <div>Horaire de fin: {{ examen.horaire_de_fin }}</div>
+        <div>Salle d'examen: {{ examen.salle_examen }}</div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input v-model="etudiant.email" type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="etudiant.motDePasse" type="password" class="form-control" id="mdp">
-            </div>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
-        </form>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import useEtudiant from '../../services/serviceEtudiant';
-const router = useRouter()
-const { ajouterEtudiant } = useEtudiant()
+import { ref, reactive, onBeforeMount } from 'vue';
 
-const etudiant = ref({
-    nom: '',
-    prenom: '',
-    dateDeNaissance: '',
-    email: '',
-    motDePasse: ''
+// Recuperer les variable de chemin
+import { useRoute } from 'vue-router';
+const route = useRoute()
+console.log('route', route)
+const { id } = route.params
+
+// Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
+import useExamen from '../services/serviceExamen';
+
+const { getExamenById } = useExamen()
+
+const examen = ref({})
+
+onBeforeMount(() => {
+
+    if (id)
+        getExamenById(id).then((data) => {
+            console.log('Examen', data)
+            examen.value = data
+        }).catch(err => console.log("Detail de l'examen", err))
+
 })
 
-const soumettre = () => {
-    console.log('etudiant', etudiant.value)
-    ajouterEtudiant(etudiant.value).then(() => {
-        router.push('/')
-    }).catch(err => console.log("Probleme lors de l'ajout", err))
-}
 </script>
 
 <style lang="scss" scoped></style>
