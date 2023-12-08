@@ -18,7 +18,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useAuth from '../services/serviceAuthentification'
+import useAuth from '../../services/serviceAuthentification'
 
 const router = useRouter()
 const { login } = useAuth()
