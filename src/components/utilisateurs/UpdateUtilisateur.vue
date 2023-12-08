@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="mettreAJour">
             <div class="mb-3">
-                <label for="nom" class="form-label">Photo</label>
+                <label for="photo" class="form-label">Photo</label>
                 <input v-model="utilisateur.photo" type="text" class="form-control" id="photo">
             </div>
             <div class="mb-3">
@@ -18,8 +18,8 @@
                 <input v-model="utilisateur.dateDeNaissance" type="date" class="form-control" id="naissance">
             </div>
             <div class="mb-3">
-                <label for="naissance" class="form-label">Telephone</label>
-                <input v-model="utilisateur.telephone" type="date" class="form-control" id="telephone">
+                <label for="telephone" class="form-label">Telephone</label>
+                <input v-model="utilisateur.telephone" type="tel" class="form-control" id="telephone">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
