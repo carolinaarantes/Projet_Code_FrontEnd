@@ -2,10 +2,12 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="moyenne" class="form-label">Moyenne</label>
-                <input v-model="bulletin.moyenne" type="text" class="form-control" id="moyenne">
+                <label for="moyenne" class="moyenneBulletin">Moyenne</label>
+                <div class="moyenneBulletin">
+                    <input :style="{border:error('moyenne')?'1px solid red':''}" type="text"  v-model="bulletin.moyenne" > /*class="form-control" id="moyenne"*/
+                </div>
             </div>
-           
+
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>
@@ -19,7 +21,7 @@ const router = useRouter()
 const { ajouterBulletin } = useBulletin()
 
 const bulletin = ref({
-   moyenne:''
+    moyenne: ''
 })
 
 const soumettre = () => {

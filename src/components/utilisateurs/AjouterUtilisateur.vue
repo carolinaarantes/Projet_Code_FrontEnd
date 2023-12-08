@@ -15,11 +15,11 @@
             </div>
             <div class="mb-3">
                 <label for="naissance" class="form-label">Date de naissance</label>
-                <input v-model="utilisateur.dateDeNaissance" type="date" class="form-control" id="naissance">
+                <input v-model="utilisateur.dateNaissance" type="date" class="form-control" id="naissance">
             </div>
             <div class="mb-3">
                 <label for="naissance" class="form-label">Telephone</label>
-                <input v-model="utilisateur.telephone" type="date" class="form-control" id="telephone">
+                <input v-model="utilisateur.telephone" type="number" class="form-control" id="telephone">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -27,9 +27,9 @@
             </div>
             <div class="mb-3">
                 <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="utilisateur.motDePasse" type="password" class="form-control" id="mdp">
+                <input v-model="utilisateur.motPasse" type="password" class="form-control" id="mdp">
             </div>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary" @click="soumettre">Ajouter</button>
         </form>
     </div>
 </template>
@@ -45,7 +45,7 @@ const utilisateur = ref({
     photo: '',
     nom: '',
     prenom: '',
-    dateDeNaissance: '',
+    dateNaissance: '',
     telephone: '',
     email: '',
     motDePasse: ''
@@ -55,7 +55,7 @@ const soumettre = () => {
     console.log('utilisateur', utilisateur.value)
     ajouterUtilisateur(utilisateur.value).then(() => {
         router.push('/')
-    }).catch(err => console.log("Probleme lors de l'ajout", err))
+    }).catch(err => console.log("Problème lors de l'ajout de l'utilisateur", err))
 }
 </script>
 
