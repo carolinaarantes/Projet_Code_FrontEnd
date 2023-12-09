@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Horaire</p> 
+        <h1>Horaire</h1> 
         <div>Jour de la semaine: {{ horaire.jourDeSemaine }}</div>
         <div>Horaire de debut: {{ horaire.horaireDeDebut }}</div>
         <div>Horaire de fin: {{ horaire.horaireDeFin }}</div>

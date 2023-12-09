@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Programme</p> 
+        <h1>Programme</h1> 
         <div>Nom du programme: {{ programme.nomDuProgramme }}</div>
         <div>Date de debut: {{ programme.dateDeDebut }}</div>
         <div>Date de fin: {{ programme.dateDeFin }}</div>

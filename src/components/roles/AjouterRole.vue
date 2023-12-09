@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="nom" class="form-label">Categorie</label>
+                <label for="categorie" class="form-label">Categorie</label>
                 <input v-model="role.categorie" type="text" class="form-control" id="categorie">
             </div>
 
@@ -26,7 +26,7 @@ const soumettre = () => {
     console.log('role', role.value)
     ajouterRole(role.value).then(() => {
         router.push('/')
-    }).catch(err => console.log("Probleme lors de l'ajout", err))
+    }).catch(err => console.log("Probleme lors de l'ajout du role", err))
 }
 </script>
 

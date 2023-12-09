@@ -23,7 +23,7 @@ const useExamen = () =>{
         return resultat.data.data
     }
 
-    const supprimerExamen = async ()=>{
+    const supprimerExamen = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/examens/${id}`)
     

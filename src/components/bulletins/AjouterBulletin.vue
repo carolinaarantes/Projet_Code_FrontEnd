@@ -16,7 +16,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useBulletin from '../services/serviceBulletin';
+import useBulletin from '../../services/serviceBulletin';
 const router = useRouter()
 const { ajouterBulletin } = useBulletin()
 

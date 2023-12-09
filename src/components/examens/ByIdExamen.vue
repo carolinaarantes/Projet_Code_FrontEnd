@@ -19,7 +19,7 @@ console.log('route', route)
 const { id } = route.params
 
 // Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
-import useExamen from '../services/serviceExamen';
+import useExamen from '../../services/serviceExamen';
 
 const { getExamenById } = useExamen()
 

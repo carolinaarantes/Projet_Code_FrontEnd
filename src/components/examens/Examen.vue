@@ -34,6 +34,7 @@ const props = defineProps({
     examen: {
         type: Object,
         default: () => ({
+            id:'',
             matiere: 'test',
             date_examen: 'test',
             horaire_de_debut: 'test',

@@ -23,7 +23,7 @@ const useRole = () =>{
         return resultat.data.data
     }
 
-    const supprimerRole = async ()=>{
+    const supprimerRole = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/roles/${id}`)
     

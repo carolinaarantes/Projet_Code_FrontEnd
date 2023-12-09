@@ -18,17 +18,17 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, onBeforeMount } from 'vue';
 
 const examens = ref([])
-import useExamen from '../services/serviceExamen'
+import useExamen from '../../services/serviceExamen.js'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const { getExamenById, supprimerExamen } = useExamen()
+const { listeExamens, supprimerExamen } = useExamen()
 onBeforeMount(() => {
 
-    getExamenById().then(data => {
+    listeExamens().then(data => {
         examens.value = data
 
         console.log("Liste d'examen", data)
@@ -42,7 +42,7 @@ const supprimer = (id) => {
     console.log('emits', id)
     supprimerExamen(id).then((data) => {
         console.log('suppression', data)
-        getExamenById().then(data => {
+        listeExamens().then(data => {
             examens.value = data
 
             console.log("Liste d'examen", data)

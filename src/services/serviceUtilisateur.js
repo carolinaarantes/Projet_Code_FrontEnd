@@ -23,7 +23,7 @@ const useUtilisateur = () =>{
         return resultat.data.data
     }
 
-    const supprimerUtilisateur = async ()=>{
+    const supprimerUtilisateur = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/utilisateurs/${id}`)
     

@@ -23,7 +23,7 @@ const useBulletin = () =>{
         return resultat.data.data
     }
 
-    const supprimerBulletin = async ()=>{
+    const supprimerBulletin = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/bulletins/${id}`)
     

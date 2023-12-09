@@ -23,7 +23,7 @@ const useProgramme = () =>{
         return resultat.data.data
     }
 
-    const supprimerProgramme = async ()=>{
+    const supprimerProgramme = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/programmes/${id}`)
     

@@ -49,13 +49,13 @@ const { getUtiliateurById, updateUtilisateur } = useUtilisateur()
 onBeforeMount(() => {
     if (id) getUtiliateurById(id).then(data => {
         utilisateur.value = data
-    }).catch(err => console.log('erreur mise a jour', err))
+    }).catch(err => console.log("Erreur de recherche de l'utilisateur", err))
 })
 
 const mettreAJour = () => {
     updateUtilisateur(id, utilisateur.value).then(() => {
         router.push('/')
-    }).catch(err => console.log('Probleme lors de la mise a jour', err))
+    }).catch(err => console.log("Probleme lors de la mise a jour de l'utilisateur", err))
 }
 </script>
 
