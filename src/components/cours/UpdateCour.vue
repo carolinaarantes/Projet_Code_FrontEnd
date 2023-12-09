@@ -27,7 +27,7 @@ const { id } = route.params
 const router = useRouter()
 const cours = ref({})
 
-import useCour from '../services/serviceCour';
+import useCour from '../../services/serviceCour';
 const { getCourById, updateCour } = useCour()
 
 onBeforeMount(() => {

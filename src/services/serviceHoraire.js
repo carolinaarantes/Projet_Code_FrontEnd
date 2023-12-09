@@ -23,7 +23,7 @@ const useHoraire = () =>{
         return resultat.data.data
     }
 
-    const supprimerHoraire = async ()=>{
+    const supprimerHoraire = async (id)=>{
 
         const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/horaires/${id}`)
     

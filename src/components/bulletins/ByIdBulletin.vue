@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1></h1> 
-        <p>La moyenne du bulletin est {{ bulletin.moyenne }} </p>       
+        <p>La moyenne du bulletin est: {{ bulletin.moyenne }} </p>       
     </div>
 </template>
 
@@ -15,7 +15,7 @@ console.log('route', route)
 const { id } = route.params
 
 // Fonction/Service qui permet de recuperer un etudiant depuis la base de donnees
-import useBulletin from '../services/serviceBulletin';
+import useBulletin from '../../services/serviceBulletin';
 
 const { getBulletinById } = useBulletin()
 

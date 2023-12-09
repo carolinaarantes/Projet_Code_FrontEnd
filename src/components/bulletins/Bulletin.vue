@@ -22,6 +22,7 @@ const props = defineProps({
     bulletin: {
         type: Object,
         default: () => ({
+            id:'',
             moyenne: 'test',           
         })
     }

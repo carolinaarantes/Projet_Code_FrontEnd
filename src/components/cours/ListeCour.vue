@@ -19,7 +19,7 @@
 import { ref, reactive } from 'vue';
 
 const cours = ref([])
-import useCour from '../services/serviceCour'
+import useCour from '../../services/serviceCour'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

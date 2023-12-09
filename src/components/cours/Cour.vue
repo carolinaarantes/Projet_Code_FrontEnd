@@ -28,6 +28,7 @@ const props = defineProps({
     cour: {
         type: Object,
         default: () => ({
+            id:'',
             nom_du_cour: 'test',
             salle_du_cours: 'test',
             credits: 'test',

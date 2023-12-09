@@ -22,7 +22,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useCour from '../services/serviceCour';
+import useCour from '../../services/serviceCour';
 const router = useRouter()
 const { ajouterCour } = useCour()
 

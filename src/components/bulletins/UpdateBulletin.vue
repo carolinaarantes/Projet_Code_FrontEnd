@@ -19,7 +19,7 @@ const { id } = route.params
 const router = useRouter()
 const bulletin = ref({})
 
-import useBulletin from '../services/serviceBulletin';
+import useBulletin from '../../services/serviceBulletin';
 const { getBulletinById, updateBulletin } = useBulletin()
 
 onBeforeMount(() => {

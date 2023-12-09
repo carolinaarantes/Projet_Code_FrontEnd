@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Role</p>
+        <h1>Role</h1>
         <div>Categorie: {{ role.categorie }}</div>
     </div>
 </template>

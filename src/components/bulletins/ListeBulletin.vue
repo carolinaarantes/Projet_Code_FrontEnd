@@ -16,7 +16,7 @@
 import { ref, reactive } from 'vue';
 
 const bulletin = ref([])
-import useBulletin from '../services/serviceBulletin'
+import useBulletin from '../../services/serviceBulletin'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

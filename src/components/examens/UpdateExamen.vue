@@ -36,7 +36,7 @@ const { id } = route.params
 const router = useRouter()
 const examen = ref({})
 
-import useExamen from '../services/serviceExamen';
+import useExamen from '../../services/serviceExamen';
 const { getExamenById, updateExamen } = useExamen()
 
 onBeforeMount(() => {

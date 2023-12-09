@@ -29,7 +29,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useExamen from '../services/serviceExamen';
+import useExamen from '../../services/serviceExamen';
 const router = useRouter()
 const { ajouterExamen } = useExamen()
 
