@@ -42,6 +42,7 @@ const router = useRouter()
               Roles
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
               <li><RouterLink class="dropdown-item" to="/roles/ajout">Ajouter role</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/roles/details/:id">Détails role</RouterLink></li>
@@ -49,6 +50,7 @@ const router = useRouter()
               <li><RouterLink class="dropdown-item" to="/roles/mise-a-jour/:id">Modifier role</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/roles">Liste de roles</a></li>            </ul>
+
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/programmes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -12,7 +12,6 @@ import ListeRole from '../components/roles/ListeRole.vue'
 import ByIdRole from '../components/roles/ByIdRole.vue'
 import AjouterRole from '../components/roles/AjouterRole.vue'
 import UpdateRole from '../components/roles/UpdateRole.vue'
-import SupprimerRole from '../components/roles/SupprimerRole.vue'
 
 import ListeProgramme from '../components/programmes/ListeProgramme.vue'
 import ByIdProgramme from '../components/programmes/ByIdProgramme.vue'
@@ -74,12 +73,11 @@ const router = createRouter({
       component: SupprimerUtilisateur
     }, 
     {
-      /*path: '/login',
+      path: '/login',
       name: 'login',
-      component: Login*/
+      component: Login
       
     },
-
     {
       path: '/roles',
       name: 'home-role',
@@ -100,12 +98,6 @@ const router = createRouter({
       name: 'mise-a-jour-role',
       component: UpdateRole
     },   
-    {
-      path: '/roles/suprimmer/:id',
-      name: 'supprimer-role',
-      component: SupprimerRole
-    }, 
-
     {
       path: '/programmes',
       name: 'home-programme',
