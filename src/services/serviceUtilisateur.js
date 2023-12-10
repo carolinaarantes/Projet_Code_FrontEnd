@@ -12,6 +12,7 @@ const useUtilisateur = () =>{
     }
 
     const ajouterUtilisateur = async(utilisateur)=>{
+        console.log('utilisateur', utilisateur);
         const resultat = await axios.post(`${import.meta.env.VITE_BASE_URL}/utilisateurs`, utilisateur)
 
         return resultat.data.data

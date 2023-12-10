@@ -54,7 +54,7 @@ const supprimer = (id) => {
 }
 
 const allerAJouterUtilisateur = () => {
-    router.push('/ajout')
+    router.push('/utilisateurs/ajout')
 }
 </script>
 
