@@ -1,20 +1,20 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour">
+        <form @submit.prevent="mettreAJour" style="height: 25vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="nomDuProgramme" class="form-label">Nom du programme</label>
-                <input v-model="programme.nomDuProgramme" type="text" class="form-control" id="nomDuProgramme">
+                <label for="nomDuProgramme" class="form-label" style="margin-top: 2vw;">Nom du programme</label>
+                <input v-model="programme.nomDuProgramme" type="text" class="form-control" id="nomDuProgramme" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="dateDeDebut" class="form-label">Date de debut</label>
-                <input v-model="programme.dateDeDebut" type="text" class="form-control" id="dateDeDebut">
+                <input v-model="programme.dateDeDebut" type="date" class="form-control" id="dateDeDebut" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="dateDeFin" class="form-label">Date de fin</label>
-                <input v-model="programme.dateDeFin" type="text" class="form-control" id="dateDeFin">
+                <input v-model="programme.dateDeFin" type="date" class="form-control" id="dateDeFin" style="width: 40vw;">
             </div>
             
-            <button type="submit" class="btn btn-primary">Mettre a jour</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Mettre a jour</button>
         </form>
     </div>
 </template>

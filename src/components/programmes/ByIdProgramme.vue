@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <h1>Programme</h1> 
-        <div>Nom du programme: {{ programme.nomDuProgramme }}</div>
-        <div>Date de debut: {{ programme.dateDeDebut }}</div>
-        <div>Date de fin: {{ programme.dateDeFin }}</div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Programme</h1> 
+        <div style="margin-left: 5vw;">Nom du programme: {{ programme.nomDuProgramme }}</div>
+        <div style="margin-left: 5vw;">Date de debut: {{ programme.dateDeDebut }}</div>
+        <div style="margin-left: 5vw;">Date de fin: {{ programme.dateDeFin }}</div>
     </div>
 </template>
 

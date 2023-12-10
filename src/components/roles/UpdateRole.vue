@@ -1,12 +1,12 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour">
+        <form @submit.prevent="mettreAJour" style="height: 15vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="categorie" class="form-label">Categorie</label>
-                <input v-model="role.categorie" type="text" class="form-control" id="categorie">
+                <label for="categorie" class="form-label" style="margin-top: 2vw;">Categorie</label>
+                <input v-model="role.categorie" type="text" class="form-control" id="categorie" style="width: 40vw;">
             </div>
             
-            <button type="submit" class="btn btn-primary">Mettre a jour</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Mettre a jour</button>
         </form>
     </div>
 </template>

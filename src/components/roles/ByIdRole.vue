@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1>Role</h1>
-        <div>Categorie: {{ role.categorie }}</div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Role</h1>
+        <div style="margin-left: 5vw;">Categorie: {{ role.categorie }}</div>
     </div>
 </template>
 

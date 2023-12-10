@@ -1,20 +1,28 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre">
+        <form @submit.prevent="soumettre" style="height: 25vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="jourDeSemaine" class="form-label">Jour de la semaine</label>
-                <input v-model="horaire.jourDeSemaine" type="text" class="form-control" id="jourDeSemaine">
-            </div>
+                <label for="jourDeSemaine" class="form-label" style="margin-top: 2vw;">Jour de la semaine</label>
+                <select v-model="horaire.jourDeSemaine" type="text" class="form-control" id="jourDeSemaine" style="width: 40vw;">
+                    <option value="Lundi">Lundi</option>
+                    <option value="Mardi">Mardi</option>
+                    <option value="Mercredi">Mercredi</option>
+                    <option value="Jeudi">Jeudi</option>
+                    <option value="Vendredi">Vendredi</option>
+                    <option value="Samedi">Samedi</option>
+                    <option value="Dimanche">Dimanche</option>
+                </select>
+                </div>
             <div class="mb-3">
                 <label for="horaireDeDebut" class="form-label">Horaire de debut</label>
-                <input v-model="horaire.horaireDeDebut" type="text" class="form-control" id="horaireDeDebut">
+                <input v-model="horaire.horaireDeDebut" type="time" class="form-control" id="horaireDeDebut" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="horaireDeFin" class="form-label">Horaire de fin</label>
-                <input v-model="horaire.horaireDeFin" type="text" class="form-control" id="horaireDeFin">
+                <input v-model="horaire.horaireDeFin" type="time" class="form-control" id="horaireDeFin" style="width: 40vw;">
             </div>
            
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Ajouter</button>
         </form>
     </div>
 </template>
