@@ -13,17 +13,19 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-
-const bulletin = ref([])
-import useBulletin from '../../services/serviceBulletin'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onBeforeMount } from 'vue';
+const bulletins = ref([])
+import useBulletin from '../../services/serviceBulletin.js'
+import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
-const { ByIdBulletin, supprimerBulletin } = useBulletin()
+const { listeBulletins, supprimerBulletin } = useBulletin()
 onBeforeMount(() => {
 
-    ByIdBulletin().then(data => {
+    listeBulletins().then(data => {
         bulletin.value = data
 
         console.log('Liste de bulletin', data)
@@ -32,12 +34,14 @@ onBeforeMount(() => {
 
 })
 import Bulletin from './Bulletin.vue';
+import { storeToRefs } from 'pinia';
+
 
 const supprimer = (id) => {
     console.log('emits', id)
     supprimerBulletin(id).then((data) => {
         console.log('suppression', data)
-        ByIdBulletin().then(data => {
+        listeBulletins().then(data => {
             bulletin.value = data
 
             console.log('Liste de bulletin', data)
@@ -50,7 +54,7 @@ const supprimer = (id) => {
 }
 
 const allerAJouterBulletin = () => {
-    router.push('/ajout')
+    router.push('/bulletins/ajout')
 }
 
 

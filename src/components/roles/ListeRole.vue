@@ -28,7 +28,13 @@ import { storeToRefs } from 'pinia';
 import { ref, reactive, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router'
 import useRole from '../../services/serviceRole.js'
+
+import { useRouter } from 'vue-router';
 import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
+const router = useRouter()
+
 
 const roles = ref([])
 const router = useRouter()
@@ -49,6 +55,8 @@ onBeforeMount(async () => {
     }
 });
 import Role from './Role.vue'
+import { storeToRefs } from 'pinia';
+
 
 const supprimer = (id) => {
     console.log('emits', id)

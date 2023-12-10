@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour" style="height: 35vw; margin-left: 10vw;">
+        <form @submit.prevent="mettreAJour" style="height: 37vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="matiere" class="form-label" style="margin-top: 2vw;">Matière</label>
                 <input v-model="examen.matiere" type="text" class="form-control" id="matiere" style="width: 40vw;">

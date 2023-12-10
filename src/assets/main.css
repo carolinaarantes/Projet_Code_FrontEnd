@@ -40,3 +40,9 @@ form{
   height: 15vw;
   margin-left: 10vw;
 }
+
+.detail_user{
+  background-color: rgb(233, 232, 232);
+  width: 40vw;
+  height: 5vw;
+}
