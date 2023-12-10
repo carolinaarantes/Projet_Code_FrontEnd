@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre" style="height: 25vw; margin-left: 10vw;">
+        <form @submit.prevent="soumettre" style="height: 27vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="nomDuProgramme" class="form-label" style="margin-top: 2vw;">Nom du programme</label>
                 <input v-model="programme.nomDuProgramme" type="text" class="form-control" id="nomDuProgramme" style="width: 40vw;">

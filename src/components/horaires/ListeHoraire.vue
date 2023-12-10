@@ -18,6 +18,10 @@
 import { ref, reactive, onBeforeMount } from 'vue';
 const horaires = ref([])
 import useHoraire from '../../services/serviceHoraire.js'
+import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
 const { listeHoraires, supprimerHoraire } = useHoraire()
@@ -31,6 +35,8 @@ onBeforeMount(() => {
 
 })
 import Horaire from './Horaire.vue'
+import { storeToRefs } from 'pinia';
+
 
 const supprimer = (id) => {
     console.log('emits', id)
@@ -48,7 +54,7 @@ const supprimer = (id) => {
 }
 
 const allerAjouterHoraire = () => {
-    router.push('/ajout')
+    router.push('/horaires/ajout')
 }
 
 </script>

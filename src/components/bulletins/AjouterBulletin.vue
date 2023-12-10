@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre" style="height: 15vw; margin-left: 10vw;">
+        <form @submit.prevent="soumettre" style="height: 17vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="moyenne" class="moyenneBulletin" style="margin-top: 2vw;">Moyenne</label>
                 <div class="moyenneBulletin">

@@ -16,17 +16,19 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-
+import { ref, reactive, onBeforeMount } from 'vue';
 const cours = ref([])
-import useCour from '../../services/serviceCour'
-import { useRouter } from 'vue-router'
+import useCour from '../../services/serviceCour.js'
+import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
-const { getCourById, supprimerCour } = useCour()
+const { listeCours, supprimerCour } = useCour()
 onBeforeMount(() => {
 
-    getCourById().then(data => {
+    listeCours().then(data => {
         cours.value = data
         console.log('Liste de cours', data)
     })
@@ -34,12 +36,14 @@ onBeforeMount(() => {
 
 })
 import Cour from './Cour.vue';
+import { storeToRefs } from 'pinia';
+
 
 const supprimer = (id) => {
     console.log('emits', id)
     supprimerCour(id).then((data) => {
         console.log('suppression', data)
-        getCourById().then(data => {
+        listeCours().then(data => {
             cours.value = data
 
             console.log('Liste de cours', data)
@@ -51,7 +55,7 @@ const supprimer = (id) => {
 }
 
 const allerAJouterCour = () => {
-    router.push('/ajout')
+    router.push('/cours/ajout')
 }
 
 

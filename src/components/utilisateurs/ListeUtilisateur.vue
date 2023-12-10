@@ -6,8 +6,7 @@
                 <th>Prenom</th>
                 <th>Date de naissance</th>
                 <th>Telephone</th>
-                <th>Email</th>                
-                <th>Actions</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>

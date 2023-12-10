@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour" style="height: 45vw; margin-left: 10vw;">
+        <form @submit.prevent="mettreAJour" style="height: 47vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input v-model="utilisateur.photo" type="text" class="form-control" id="photo">
