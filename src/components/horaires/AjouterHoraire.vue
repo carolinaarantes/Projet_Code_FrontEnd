@@ -4,6 +4,7 @@
             <div class="mb-3">
                 <label for="jourDeSemaine" class="form-label" style="margin-top: 2vw;">Jour de la semaine</label>
                 <select v-model="horaire.jourDeSemaine" type="text" class="form-control" id="jourDeSemaine" style="width: 40vw;">
+                    <option value="" disabled selected>Sélectionnez un jour de semaine</option>
                     <option value="Lundi">Lundi</option>
                     <option value="Mardi">Mardi</option>
                     <option value="Mercredi">Mercredi</option>
