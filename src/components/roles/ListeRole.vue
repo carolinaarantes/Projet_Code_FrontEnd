@@ -35,6 +35,7 @@ const store = useAuthStore()
 const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
+
 const { role } = defineProps(['role']);
 
 const { listeRoles, supprimerRole } = useRole()
