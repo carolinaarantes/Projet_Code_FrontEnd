@@ -18,6 +18,10 @@
 import { ref, reactive, onBeforeMount } from 'vue';
 const programmes = ref([])
 import useProgramme from '../../services/serviceProgramme.js'
+import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
 const { listeProgrammes, supprimerProgramme } = useProgramme()
@@ -31,6 +35,7 @@ onBeforeMount(() => {
 
 })
 import Programme from './Programme.vue'
+import { storeToRefs } from 'pinia';
 
 const supprimer = (id) => {
     console.log('emits', id)
@@ -48,7 +53,7 @@ const supprimer = (id) => {
 }
 
 const allerAjouterProgramme = () => {
-    router.push('/ajout')
+    router.push('programmes/ajout')
 }
 
 </script>

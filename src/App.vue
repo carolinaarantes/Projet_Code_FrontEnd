@@ -32,10 +32,9 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/utilisateurs/details/:id">Détails utilisateur</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><RouterLink class="dropdown-item" to="/utilisateurs/mise-a-jour/:id">Mise à jour utilisateur</RouterLink></li>
-              <li><a class="dropdown-item" href="/utilisateurs">Liste utilisateurs</a></li>
+              <li><RouterLink class="dropdown-item" to="/utilisateurs/mise-a-jour/:id">Modifier utilisateur</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><RouterLink class="dropdown-item" to="/utilisateurs/supprimmer/:id">Supprimer utilisateur</RouterLink></li>
+              <li><a class="dropdown-item" href="/utilisateurs">Liste d'utilisateurs</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -44,11 +43,12 @@ const router = useRouter()
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/roles/ajout">Ajouter role</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/roles/details/:id">Détails role</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/roles/mise-a-jour/:id">Modifier role</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/roles/supprimmer/:id">Supprimer role</RouterLink></li>
-            </ul>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/roles">Liste de roles</a></li>            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/programmes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,22 +56,25 @@ const router = useRouter()
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/programmes/ajout">Ajouter programme</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/programmes/details/:id">Détails programme</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/programmes/mise-a-jour/:id">Modifier programme</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/programmes/supprimmer/:id">Supprimer programme</RouterLink></li>
-            </ul>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/programmes">Liste de programmes</a></li>            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/cours" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Cours
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><RouterLink class="dropdown-item" to="/cours/ajout">Ajouter cour</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/cours/details/:id">Détails cour</RouterLink></li>
+              <li><RouterLink class="dropdown-item" to="/cours/ajout">Ajouter cours</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><RouterLink class="dropdown-item" to="/cours/mise-a-jour/:id">Modifier cour</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/cours/supprimmer/:id">Supprimer cour</RouterLink></li>
+              <li><RouterLink class="dropdown-item" to="/cours/details/:id">Détails cours</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><RouterLink class="dropdown-item" to="/cours/mise-a-jour/:id">Modifier cours</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/cours">Liste de cours</a></li>            
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -80,11 +83,12 @@ const router = useRouter()
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/horaires/ajout">Ajouter horaire</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/horaires/details/:id">Détails horaire</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/horaires/mise-a-jour/:id">Modifier horaire</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/horaires/supprimmer/:id">Supprimer horaire</RouterLink></li>
-            </ul>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/horaires">Liste de horaires</a></li>            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/examens" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,11 +96,12 @@ const router = useRouter()
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/examens/ajout">Ajouter examen</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/examens/details/:id">Détails examen</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/examens/mise-a-jour/:id">Modifier examen</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/examens/supprimmer/:id">Supprimer examen</RouterLink></li>
-            </ul>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/examens">Liste d'examens</a></li>            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/bulletins" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,11 +109,12 @@ const router = useRouter()
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/bulletins/ajout">Ajouter bulletin</RouterLink></li>
+              <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/bulletins/details/:id">Détails bulletin</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/bulletins/mise-a-jour/:id">Modifier bulletin</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/bulletins/supprimmer/:id">Supprimer bulletin</RouterLink></li>
-            </ul>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/bulletins">Liste de bulletins</a></li>            </ul>
           </li>
         </ul>
         <div class="d-flex align-items-center gx-20">

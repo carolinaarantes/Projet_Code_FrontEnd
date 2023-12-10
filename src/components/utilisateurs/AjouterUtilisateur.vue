@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre" style="height: 45vw; margin-left: 10vw;">
+        <form @submit.prevent="soumettre" style="height: 47vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">

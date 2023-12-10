@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour" style="height: 45vw; margin-left: 10vw;">
+        <form @submit.prevent="mettreAJour" style="height: 47vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input v-model="utilisateur.photo" type="text" class="form-control" id="photo">
@@ -47,23 +47,13 @@
 </template>
 
 <script setup>
-import { ref, reactive, onBeforeMount, watchEffect, watchEffect } from 'vue';
+import { ref, reactive, onBeforeMount, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute()
 const { id } = route.params
 
 const router = useRouter()
 const utilisateur = ref({})
-
-// Variable pour stocker les erreurs de validations des champs
-const errors = ref({
-    nom: '',
-    prenom: '',
-    dateNaissance: '',
-    telephone: '',
-    email: '',
-    motPasse: ''
-})
 
 // Variable pour stocker les erreurs de validations des champs
 const errors = ref({

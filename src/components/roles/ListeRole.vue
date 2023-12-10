@@ -16,6 +16,10 @@
 import { ref, reactive, onBeforeMount } from 'vue';
 const roles = ref([])
 import useRole from '../../services/serviceRole.js'
+import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
 const { listeRoles, supprimerRole } = useRole()
@@ -29,6 +33,8 @@ onBeforeMount(() => {
 
 })
 import Role from './Role.vue'
+import { storeToRefs } from 'pinia';
+
 
 const supprimer = (id) => {
     console.log('emits', id)
@@ -46,7 +52,7 @@ const supprimer = (id) => {
 }
 
 const allerAjouterRole = () => {
-    router.push('/ajout')
+    router.push('/roles/ajout')
 }
 
 </script>
