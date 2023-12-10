@@ -36,8 +36,6 @@ const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
 
-const roles = ref([])
-
 const { role } = defineProps(['role']);
 
 const { listeRoles, supprimerRole } = useRole()
@@ -52,7 +50,6 @@ onBeforeMount(async () => {
     }
 });
 import Role from './Role.vue'
-
 
 
 const supprimer = (id) => {
