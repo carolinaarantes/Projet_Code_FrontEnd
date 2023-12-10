@@ -43,11 +43,11 @@ const router = useRouter()
               Roles
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><RouterLink class="dropdown-item" to="/roles/ajout">Ajouter role</RouterLink></li>
+              <li><RouterLink class="dropdown-item" to="/roles/ajout">Ajouter role</RouterLink></li>              
               <li><RouterLink class="dropdown-item" to="/roles/details/:id">Détails role</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><RouterLink class="dropdown-item" to="/roles/mise-a-jour/:id">Modifier role</RouterLink></li>
-              <li><RouterLink class="dropdown-item" to="/roles/supprimmer/:id">Supprimer role</RouterLink></li>
+              <li><RouterLink class="dropdown-item" to="/roles/mise-a-jour/:id">Modifier role</RouterLink></li> 
+              <li><RouterLink class="dropdown-item" to="/roles">Liste role</RouterLink></li>             
             </ul>
           </li>
           <li class="nav-item dropdown">

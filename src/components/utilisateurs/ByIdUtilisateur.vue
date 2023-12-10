@@ -20,37 +20,26 @@
             </svg>
 
             <div>
+                <!-- Message d'erreur pour utilisateur non connecté -->
+        <div >
+            <p></p>
+        </div>
                 <div v-if="!peuxAccederProfil">
                     <p>Vous n'avez pas le droit de voir ce profil.</p>
                 </div>
                 <div v-else>
-                    <h1>Profil de {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
-                    <p>Biographie</p>
-                    <div>Email: {{ utilisateur.email }}</div>
-                    <div>Telephone: {{ utilisateur.telephone }}</div>
-                    <div>Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
+                    <h1 style="margin-left: 5vw;">Profil de {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
+                    <p style="margin-left: 5vw;">Biographie</p>
+                    <div style="margin-left: 5vw;">Email: {{ utilisateur.email }}</div>
+                    <div style="margin-left: 5vw;">Telephone: {{ utilisateur.telephone }}</div>
+                    <div style="margin-left: 5vw;">Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
                 </div>
             </div>
         </div>
         <div>
             <button class="btn btn-primary">Modifier</button>
             <button class="btn btn-primary">Supprimer</button>
-        </div>
-        
-        <!-- Message d'erreur pour utilisateur non connecté -->
-        <div >
-            <p></p>
-        </div>
-        <div v-if="!utilisateurEstConnecter" class="alert alert-warning" role="alert">
-           <p>Veuillez vous connecter pour accéder à cette fonctionnalité.</p> 
-            <a href="/login" class="alert-link">Se connecter</a>
-        </div>
-    <div class="detail">
-        <h1 style="margin-left: 5vw;">Profil de {{ utilisateur.photo }} {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1> <!--avec photo?-->
-        <p style="margin-left: 5vw;">Biographie</p>        
-        <div style="margin-left: 5vw;">Email: {{ utilisateur.email }}</div>
-        <div style="margin-left: 5vw;">Telephone: {{ utilisateur.telephone }}</div>
-        <div style="margin-left: 5vw;">Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
+        </div>   
     </div>
 </template>
 
@@ -68,7 +57,7 @@ const { id } = route.params
 const utilisateur = ref({})
 const isAdmin = ref(true);
 const peuxAccederProfil = ref(true);
-const userId = ref(''); // Nouveau champ pour l'ID de l'utilisateur
+const userId = ref('');
 
 const { getUtilisateurById } = useUtilisateur()
 

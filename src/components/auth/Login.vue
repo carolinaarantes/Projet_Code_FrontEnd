@@ -11,26 +11,21 @@
                 <label for="mdp" class="form-label">Mot de passe</label>
                 <input :style="{ border: errors.motPasse ? '2px red solid' : '' }" v-model="loginInfo.motPasse"
                     type="password" class="form-control" id="mdp" style="width: 30vw;">
+                    <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
             </div>
-            <div class="d-flex align-items-center">
-                <button type="submit" class="btn btn-primary">Se connecter</button> <div><RouterLink to="/ajout">Nouveau? Creer un compte</RouterLink></div>
-                <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
-            </div>
-            <div class="d-flex align-items-center">
-                    <div>
-                    <button type="submit" class="btn btn-primary">
-                        <RouterLink to="/utilisateurs/ajout">Se créer un compte</RouterLink>
-                    </button>
-
-                </div>
-            </div>
+            <div class="d-flex align-items-center" style="height: 3vw;">
+                <button type="submit" class="btn btn-primary">Se connecter</button>                
+                <button type="submit" class="btn btn-primary">
+                    <RouterLink to="/utilisateurs/ajout">Se créer un compte</RouterLink>
+                </button>
+            </div>            
         </form>
     </div>
 </template>
 
 <script setup>
 import { ref, reactive, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, RouterLink } from 'vue-router';
 import useAuth from '../../services/serviceAuthentification';
 
 // Importer le store auth
@@ -61,9 +56,11 @@ const connecter = () => {
         setToken(data.token)
         setUser(data.data)
         router.push('/')
-    }).catch(err => {
+    }).catch((err) => {
         console.log("Probleme lors de la connection", err)
 
+        // Vérifier la structure de l'erreur
+        if (err.response && err.response.data && err.response.data.errors) {
         //En cas d'erreurs au backend, recuper les erreurs provenant du backend et les afficher sur le formulaire
         const backendErrors = err.response.data.errors
         //Creer un objet pour mettre les erreurs du backend dans le meme format que la variable errors (declares plus haut)
@@ -75,9 +72,14 @@ const connecter = () => {
 
         // Copier les erreurs du backend mises en forme dans la variable errors
         errors.value = { ...errors.value, ...backendError }
+    }
+    else{
+        // Si la structure est différente, afficher un message générique
+        errors.value.email = 'Erreur lors de la connexion.';
+    }
 
-    })
-}
+    });
+};
 
 //Regex utilisees dans la validation-- on peut aussi utiliser des simples if else
 const mdpRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/
@@ -129,18 +131,12 @@ watchEffect(()=>{
 
 <style scoped>
 .btn-primary {
-    margin-right: 1rem;
+    margin-right: 1rem;   
+    
 }
 
 a {
     text-decoration: none;
     color: white;
 }
-
-.btn-primary{
-    margin-right: 1rem;
-}
- a{
-    text-decoration: none;
- }
 </style>

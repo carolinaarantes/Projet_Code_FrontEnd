@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onBeforeMount, watchEffect, watchEffect } from 'vue';
+import { ref, reactive, onBeforeMount, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute()
 const { id } = route.params
@@ -55,15 +55,6 @@ const { id } = route.params
 const router = useRouter()
 const utilisateur = ref({})
 
-// Variable pour stocker les erreurs de validations des champs
-const errors = ref({
-    nom: '',
-    prenom: '',
-    dateNaissance: '',
-    telephone: '',
-    email: '',
-    motPasse: ''
-})
 
 // Variable pour stocker les erreurs de validations des champs
 const errors = ref({
