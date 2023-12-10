@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour" style="height: 47vw; margin-left: 10vw;">
+        <form @submit.prevent="mettreAJour" style="height: 60vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
@@ -40,6 +40,22 @@
                 <input :style="{ border: errors.motPasse ? '2px red solid' : '' }" v-model="utilisateur.motPasse"
                     type="password" class="form-control" id="mdp">
                 <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select :style="{ border: errors.role ? '2px red solid' : '' }" v-model="utilisateur.role" class="form-control" id="role" style="width: 40vw;">
+                    <option value="" disabled selected>Sélectionnez un rôle</option>
+                    <option v-for="role in rolesFromDatabase" :key="role.id" :value="role.id">{{ role.nom }}</option>
+                </select>
+                <div class="text-danger pb-2" v-if="errors.role">{{ errors.role }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="programme" class="form-label">Programme</label>
+                <select :style="{ border: errors.programme ? '2px red solid' : '' }" v-model="utilisateur.programme" class="form-control" id="programme" style="width: 40vw;">
+                    <option value="" disabled selected>Sélectionnez un programme</option>
+                    <option v-for="programme in programmesFromDatabase" :key="programme.id" :value="programme.id">{{ programme.nom }}</option>
+                </select>
+                <div class="text-danger pb-2" v-if="errors.role">{{ errors.role }}</div>
             </div>
             <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="mettreAJour">Modifier</button>
         </form>

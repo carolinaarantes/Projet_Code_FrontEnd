@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre" style="height: 47vw; margin-left: 10vw;">
+        <form @submit.prevent="soumettre" style="height: 60vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
@@ -41,17 +41,43 @@
                     type="password" class="form-control" id="mdp" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
             </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select :style="{ border: errors.role ? '2px red solid' : '' }" v-model="utilisateur.role" class="form-control" id="role" style="width: 40vw;">
+                    <option value="" disabled selected>Sélectionnez un rôle</option>
+                    <option v-for="role in rolesFromDatabase" :key="role.id" :value="role.id">{{ role.nom }}</option>
+                </select>
+                <div class="text-danger pb-2" v-if="errors.role">{{ errors.role }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="programme" class="form-label">Programme</label>
+                <select v-model="utilisateur.programme" class="form-control" id="programme" style="width: 40vw;">
+                    <option value="" disabled selected>Sélectionnez un programme</option>
+                    <option v-for="programme in programmesFromDatabase" :key="programme.id" :value="programme.id">{{ programme.nom }}</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="soumettre">Ajouter</button>
         </form>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive, watchEffect } from 'vue';
+import { ref, reactive, onMounted, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import useUtilisateur from '../../services/serviceUtilisateur';
+import useRole from '../../services/serviceRole';
+import useProgramme from '../../services/serviceProgramme';
+import axios from 'axios';
+
 const router = useRouter()
 const { ajouterUtilisateur } = useUtilisateur()
+const { listeRoles } = useRole();
+const {listeProgrammes} = useProgramme();
+
+
+const rolesFromDatabase = ref([]); // Assurez-vous de charger les rôles depuis la base de données
+const programmesFromDatabase = ref([]); // Assurez-vous de charger les programmes depuis la base de données
 
 const utilisateur = ref({
     photo: '',
@@ -60,7 +86,9 @@ const utilisateur = ref({
     dateNaissance: '',
     telephone: '',
     email: '',
-    motPasse: ''
+    motPasse: '',
+    role: '',
+    programme:''
 })
 
 // Variable pour stocker les erreurs de validations des champs
@@ -70,15 +98,17 @@ const errors = ref({
     dateNaissance: '',
     telephone: '',
     email: '',
-    motPasse: ''
+    motPasse: '',
+    role: '',
+    programme:''
 })
 
 const soumettre = () => {
 
     console.log('utilisateur', utilisateur.value)
 
-    //Ne pas soumettre le formulaire si tous les champs ne sont pas valides
-    if (!valider(utilisateur.value)) return
+    //Ne pas soumettre le formulaire si tous les champs (sauf programme) ne sont pas valides
+    if (!valider(utilisateur.value, {excludeProgramme: true})) return
 
     ajouterUtilisateur(utilisateur.value).then(() => {
 
@@ -176,11 +206,20 @@ const validerChamp = (champ, utilisateur) => {
             if (!isNaN(new Date(utilisateur[champ]))) {
                 errors.value[champ] = `Date de naissance est invalide !`
             }
-
+            break
+        case 'role':
+            if (!utilisateur.role) {
+                errors.value.role = 'Le champ "Role" est obligatoire';
+            return false;
+        } else if (!rolesFromDatabase.value.some(role => role.id === utilisateur.role)) {
+                errors.value.role = 'Le rôle sélectionné n\'est pas valide';
+                return false;
+            } else {
+                errors.value.role = ''; // Réinitialiser l'erreur si le champ est valide
+                return true;
+            }
     }
-
-
-}
+};
 
 
 // Voir les erreurs de validation en temps reel
@@ -212,6 +251,35 @@ watchEffect(() => {
     }
     validerDateNaissance();
 });
+
+
+
+// Fonction pour charger les rôles depuis la base de données
+const chargerRoles = async () => {
+    try {
+        const roles = await listeRoles();
+        rolesFromDatabase.value = roles.map(roles => roles.categorie);
+    } catch (error) {
+        console.error('Erreur lors du chargement des rôles', error);
+    }
+};
+
+// Fonction pour charger les programmes depuis la base de données
+const chargerProgrammes = async () => {
+    try {
+        const programmes = await listeProgrammes();
+        programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
+    } catch (error) {
+        console.error('Erreur lors du chargement des programmes', error);
+    }
+};
+
+// Charger les données au moment du montage du composant
+onMounted(async () => {
+    await chargerRoles();
+    await chargerProgrammes();
+});
+
 </script>
 
 <style lang="scss" scoped>
