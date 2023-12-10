@@ -45,6 +45,12 @@
            <p>Veuillez vous connecter pour accéder à cette fonctionnalité.</p> 
             <a href="/login" class="alert-link">Se connecter</a>
         </div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Profil de {{ utilisateur.photo }} {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1> <!--avec photo?-->
+        <p style="margin-left: 5vw;">Biographie</p>        
+        <div style="margin-left: 5vw;">Email: {{ utilisateur.email }}</div>
+        <div style="margin-left: 5vw;">Telephone: {{ utilisateur.telephone }}</div>
+        <div style="margin-left: 5vw;">Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
     </div>
 </template>
 

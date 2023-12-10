@@ -1,19 +1,19 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour">
+        <form @submit.prevent="mettreAJour" style="height: 25vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="nom_du_cour" class="form-label">Nom du cour</label>
-                <input v-model="cour.nom_du_cour" type="text" class="form-control" id="nom_du_cour">
+                <label for="nom_du_cour" class="form-label" style="margin-top: 2vw;">Nom du cours</label>
+                <input v-model="cour.nom_du_cour" type="text" class="form-control" id="nom_du_cour" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="salle_du_cours" class="form-label">Salle de cours</label>
-                <input v-model="cour.salle_du_cours" type="text" class="form-control" id="salle_du_cours">
+                <input v-model="cour.salle_du_cours" type="text" class="form-control" id="salle_du_cours" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="credits" class="form-label">Credits</label>
-                <input v-model="cour.credits" type="text" class="form-control" id="credits">
+                <input v-model="cour.credits" type="text" class="form-control" id="credits" style="width: 40vw;">
             </div>
-            <button type="submit" class="btn btn-primary">Mettre a jour</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Mettre a jour</button>
         </form>
     </div>
 </template>

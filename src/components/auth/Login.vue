@@ -4,18 +4,20 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input :style="{ border: errors.email ? '2px red solid' : '' }" v-model="loginInfo.email" type="email"
-                    class="form-control" id="email">
+                    class="form-control" id="email" style="width: 30vw;" >
                 <div class="text-danger pb-2" v-if="errors.email">{{ errors.email }}</div>
             </div>
             <div class="mb-3">
                 <label for="mdp" class="form-label">Mot de passe</label>
                 <input :style="{ border: errors.motPasse ? '2px red solid' : '' }" v-model="loginInfo.motPasse"
-                    type="password" class="form-control" id="mdp">
+                    type="password" class="form-control" id="mdp" style="width: 30vw;">
+            </div>
+            <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary">Se connecter</button> <div><RouterLink to="/ajout">Nouveau? Creer un compte</RouterLink></div>
                 <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
             </div>
             <div class="d-flex align-items-center">
-                <button type="submit" class="btn btn-primary">Se connecter</button>
-                <div>
+                    <div>
                     <button type="submit" class="btn btn-primary">
                         <RouterLink to="/utilisateurs/ajout">Se créer un compte</RouterLink>
                     </button>
@@ -29,8 +31,11 @@
 <script setup>
 import { ref, reactive, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
-import useAuth from '../../services/serviceAuthentification'
+import useAuth from '../../services/serviceAuthentification';
 
+// Importer le store auth
+import useAuthStore from '../../stores/auth';
+const { setUser, setToken } = useAuthStore()
 const router = useRouter()
 const { login } = useAuth()
 
@@ -53,6 +58,8 @@ const connecter = () => {
 
     login(loginInfo.value.email, loginInfo.value.motPasse).then((data) => {
         console.log('utilisateur', data)
+        setToken(data.token)
+        setUser(data.data)
         router.push('/')
     }).catch(err => {
         console.log("Probleme lors de la connection", err)
@@ -129,4 +136,11 @@ a {
     text-decoration: none;
     color: white;
 }
+
+.btn-primary{
+    margin-right: 1rem;
+}
+ a{
+    text-decoration: none;
+ }
 </style>

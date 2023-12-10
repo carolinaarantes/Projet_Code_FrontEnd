@@ -1,35 +1,42 @@
 @import './base.css';
 
 #app {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  font-weight: normal;
+  height: 30vw;
+}
+
+.wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+}
+header{
+  margin-bottom: 3rem;  
+}
+nav {
+  padding-right: 2rem !important;
+  padding-left: 2rem !important;
+}
+body{
+  background-image: url('/src/assets/logo_ecole.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+form{
+  background-color: rgb(233, 232, 232);
+  width: 50vw;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.mb-3{
+  margin-left: 5vw;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.detail{
+  background-color: rgb(233, 232, 232);
+  width: 50vw;
+  height: 15vw;
+  margin-left: 10vw;
 }

@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <h1>Cour de {{ cour.nom_du_cour }}</h1>
-        <div>Salle de cour: {{ cour.salle_du_cours }}</div>
-        <div>Crédits: {{ cour.credits }}</div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Cours de {{ cour.nom_du_cour }}</h1>
+        <div style="margin-left: 5vw;">Salle de cours: {{ cour.salle_du_cours }}</div>
+        <div style="margin-left: 5vw;">Crédits: {{ cour.credits }}</div>
 
     </div>
 </template>

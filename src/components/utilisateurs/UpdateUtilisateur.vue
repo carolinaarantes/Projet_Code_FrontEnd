@@ -1,8 +1,8 @@
 <template>
     <div>
-        <form @submit.prevent="mettreAJour">
+        <form @submit.prevent="mettreAJour" style="height: 45vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="photo" class="form-label">Photo</label>
+                <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input v-model="utilisateur.photo" type="text" class="form-control" id="photo">
             </div>
             <div class="mb-3">
@@ -41,13 +41,13 @@
                     type="password" class="form-control" id="mdp">
                 <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
             </div>
-            <button type="submit" class="btn btn-primary" @click="mettreAJour">Modifier</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="mettreAJour">Modifier</button>
         </form>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive, onBeforeMount, watchEffect } from 'vue';
+import { ref, reactive, onBeforeMount, watchEffect, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute()
 const { id } = route.params
@@ -65,11 +65,21 @@ const errors = ref({
     motPasse: ''
 })
 
+// Variable pour stocker les erreurs de validations des champs
+const errors = ref({
+    nom: '',
+    prenom: '',
+    dateDeNaissance: '',
+    telephone:'',
+    email: '',
+    motDePasse: ''
+})
+
 import useUtilisateur from '../../services/serviceUtilisateur';
 const { getUtiliateurById, updateUtilisateur } = useUtilisateur()
 
 onBeforeMount(() => {
-    if (id) getUtiliateurById(id).then(data => {
+    if (id) getUtilisateurById(id).then(data => {
         utilisateur.value = data
     }).catch(err => console.log("Erreur de recherche de l'utilisateur", err))
 })
@@ -78,6 +88,9 @@ const mettreAJour = () => {
 
     if (!valider(utilisateur.value)) return
 
+
+    //Ne pas soumettre le formulaire si tous les champs ne sont pas valides
+    if(!valider(utilisateur.value)) return
     updateUtilisateur(id, utilisateur.value).then(() => {
         router.push('/')
     }).catch(err => {

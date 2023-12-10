@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <h1>Horaire</h1> 
-        <div>Jour de la semaine: {{ horaire.jourDeSemaine }}</div>
-        <div>Horaire de debut: {{ horaire.horaireDeDebut }}</div>
-        <div>Horaire de fin: {{ horaire.horaireDeFin }}</div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Horaire</h1> 
+        <div style="margin-left: 5vw;">Jour de la semaine: {{ horaire.jourDeSemaine }}</div>
+        <div style="margin-left: 5vw;">Horaire de debut: {{ horaire.horaireDeDebut }}</div>
+        <div style="margin-left: 5vw;">Horaire de fin: {{ horaire.horaireDeFin }}</div>
     </div>
 </template>
 

@@ -1,47 +1,47 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre">
+        <form @submit.prevent="soumettre" style="height: 45vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="photo" class="form-label">Photo</label>
-                <input @change="handleFileChange" type="file" class="form-control" id="photo">
+                <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
+                <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
             </div>           
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
                 <input :style="{ border: errors.nom ? '2px red solid' : '' }" v-model="utilisateur.nom" type="text"
-                    class="form-control" id="nom">
+                    class="form-control" id="nom" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.nom">{{ errors.nom }}</div>
             </div>
             <div class="mb-3">
                 <label for="prenom" class="form-label">Prenom</label>
                 <input :style="{ border: errors.prenom ? '2px red solid' : '' }" v-model="utilisateur.prenom" type="text"
-                    class="form-control" id="prenom">
+                    class="form-control" id="prenom" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.prenom">{{ errors.prenom }}</div>
             </div>
             <div class="mb-3">
                 <label for="naissance" class="form-label">Date de naissance</label>
                 <input :style="{ border: errors.dateNaissance ? '2px red solid' : '' }" v-model="utilisateur.dateNaissance"
-                    @input="validerDateNaissance" type="date" class="form-control" id="naissance" />
+                    @input="validerDateNaissance" type="date" class="form-control" id="naissance" style="width: 40vw;" />
                 <div class="text-danger pb-2" v-if="errors.dateNaissance">{{ errors.dateNaissance }}</div>
             </div>
             <div class="mb-3">
                 <label for="telephone" class="form-label">Telephone</label>
                 <input :style="{ border: errors.telephone ? '2px red solid' : '' }" v-model="utilisateur.telephone"
-                    @input="validerTelephone" type="tel" class="form-control" id="telephone">
+                    @input="validerTelephone" type="tel" class="form-control" id="telephone" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.telephone">{{ errors.telephone }}</div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input :style="{ border: errors.email ? '2px red solid' : '' }" v-model="utilisateur.email" type="email"
-                    class="form-control" id="email">
+                    class="form-control" id="email" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.email">{{ errors.email }}</div>
             </div>
             <div class="mb-3">
                 <label for="mdp" class="form-label">Mot de passe</label>
                 <input :style="{ border: errors.motPasse ? '2px red solid' : '' }" v-model="utilisateur.motPasse"
-                    type="password" class="form-control" id="mdp">
+                    type="password" class="form-control" id="mdp" style="width: 40vw;">
                 <div class="text-danger pb-2" v-if="errors.motPasse">{{ errors.motPasse }}</div>
             </div>
-            <button type="submit" class="btn btn-primary" @click="soumettre">Ajouter</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="soumettre">Ajouter</button>
         </form>
     </div>
 </template>
@@ -82,7 +82,7 @@ const soumettre = () => {
 
     ajouterUtilisateur(utilisateur.value).then(() => {
 
-        router.push('/')
+        router.push('/utilisateurs')
     }).catch(err => {
         console.log("Probleme lors de l'ajout de l'utilisateur", err)
 
@@ -214,4 +214,6 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

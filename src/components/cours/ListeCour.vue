@@ -2,7 +2,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nom du cour</th>
+                <th>Nom du cours</th>
                 <th>Salle de classe</th>
                 <th>Nombre de crédits</th>
             </tr>
@@ -12,7 +12,7 @@
                 @supprimer="supprimer" />
         </tbody>
     </table>
-    <button class="btn btn-primary" @click="allerAJouterCour">Ajouter un cour</button>
+    <button class="btn btn-primary" @click="allerAJouterCour">Ajouter un cours</button>
 </template>
 
 <script setup>
