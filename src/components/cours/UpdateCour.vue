@@ -33,7 +33,7 @@ const { getCourById, updateCour } = useCour()
 onBeforeMount(() => {
     if (id) getCourById(id).then(data => {
         cours.value = data
-    }).catch(err => console.log('Erreur avec la recherche du cour', err))
+    }).catch(err => console.log('Erreur avec la recherche du cours', err))
 })
 
 const mettreAJour = () => {

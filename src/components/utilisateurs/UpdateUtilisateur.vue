@@ -3,7 +3,7 @@
         <form @submit.prevent="mettreAJour" style="height: 47vw; margin-left: 10vw;">
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
-                <input v-model="utilisateur.photo" type="text" class="form-control" id="photo">
+                <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
             </div>
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
@@ -67,7 +67,7 @@ const errors = ref({
 })
 
 import useUtilisateur from '../../services/serviceUtilisateur';
-const { getUtiliateurById, updateUtilisateur } = useUtilisateur()
+const { getUtilisateurById, updateUtilisateur } = useUtilisateur()
 
 onBeforeMount(() => {
     if (id) getUtilisateurById(id).then(data => {
@@ -206,4 +206,8 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+input{
+    width: 40vw;
+}
+</style>
