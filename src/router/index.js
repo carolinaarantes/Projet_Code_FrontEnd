@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//import HomeView from '../views/HomeView.vue'
+
 import ListeUtilisateur from '../components/utilisateurs/ListeUtilisateur.vue'
 import ByIdUtilisateur from '../components/utilisateurs/ByIdUtilisateur.vue'
 import AjouterUtilisateur from '../components/utilisateurs/AjouterUtilisateur.vue'
@@ -72,9 +74,9 @@ const router = createRouter({
       component: SupprimerUtilisateur
     }, 
     {
-      path: '/login',
+      /*path: '/login',
       name: 'login',
-      component: Login
+      component: Login*/
       
     },
 
@@ -239,6 +241,17 @@ const router = createRouter({
 
   ]
 })
+
+// Liste des routes non protegees
+import useAuthStore from '../stores/auth'
+const routeOuvertes = ['login', 'ajout']
+
+/*router.beforeEach((to, from, next) => {
+  const { getToken: token } = useAuthStore()
+  if (routeOuvertes.includes(to.name.toLowerCase()) && token) next({ name: 'home' })
+  if (!routeOuvertes.includes(to.name.toLowerCase()) && !token) next({ name: 'login' })
+  else next()
+})*/
 
 
 export default router

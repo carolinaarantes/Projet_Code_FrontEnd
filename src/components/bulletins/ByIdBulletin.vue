@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1></h1> 
-        <p>La moyenne du bulletin est: {{ bulletin.moyenne }} </p>       
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Bulletin</h1> 
+        <p style="margin-left: 5vw;">La moyenne du bulletin est: {{ bulletin.moyenne }} </p>       
     </div>
 </template>
 

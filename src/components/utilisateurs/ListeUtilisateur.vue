@@ -22,6 +22,9 @@ import { ref, reactive, onBeforeMount } from 'vue';
 const utilisateurs = ref([])
 import useUtilisateur from '../../services/serviceUtilisateur.js';
 import { useRouter } from 'vue-router';
+import useAuthStore from '../../stores/auth';
+const store = useAuthStore()
+const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 
 const { listeUtilisateurs, supprimerUtilisateur } = useUtilisateur()
@@ -36,6 +39,7 @@ onBeforeMount(() => {
 
 })
 import Utilisateur from './Utilisateur.vue';
+import { storeToRefs } from 'pinia';
 
 const supprimer = (id) => {
     console.log('emits', id)
@@ -54,7 +58,7 @@ const supprimer = (id) => {
 }
 
 const allerAJouterUtilisateur = () => {
-    router.push('/ajout')
+    router.push('/utilisateurs')
 }
 </script>
 

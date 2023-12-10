@@ -1,14 +1,14 @@
 <template>
     <div>
-        <form @submit.prevent="soumettre">
+        <form @submit.prevent="soumettre" style="height: 15vw; margin-left: 10vw;">
             <div class="mb-3">
-                <label for="moyenne" class="moyenneBulletin">Moyenne</label>
+                <label for="moyenne" class="moyenneBulletin" style="margin-top: 2vw;">Moyenne</label>
                 <div class="moyenneBulletin">
-                    <input :style="{border:error('moyenne')?'1px solid red':''}" type="text"  v-model="bulletin.moyenne" > /*class="form-control" id="moyenne"*/
+                    <input :style="{border:error('moyenne')?'1px solid red':''}" type="text"  v-model="bulletin.moyenne" style="width: 40vw;"> /*class="form-control" id="moyenne"*/
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Ajouter</button>
         </form>
     </div>
 </template>

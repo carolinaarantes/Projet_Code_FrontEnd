@@ -1,16 +1,18 @@
 <template>
-    <div>
+    <div class="wrapper">
         <form @submit.prevent="connecter">
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input v-model="loginInfo.email" type="email" class="form-control" id="email">
+                <input v-model="loginInfo.email" type="email" class="form-control" id="email" style="width: 30vw;" >
             </div>
             <div class="mb-3">
                 <label for="mdp" class="form-label">Mot de passe</label>
-                <input v-model="loginInfo.motDePasse" type="password" class="form-control" id="mdp">
+                <input v-model="loginInfo.motDePasse" type="password" class="form-control" id="mdp" style="width: 30vw;">
             </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary">Se connecter</button> <div><RouterLink to="/ajout">Nouveau? Creer un compte</RouterLink></div>
+            </div>
         </form>
     </div>
 </template>
@@ -18,8 +20,11 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import useAuth from '../../services/serviceAuthentification'
+import useAuth from '../../services/serviceAuthentification';
 
+// Importer le store auth
+import useAuthStore from '../../stores/auth';
+const { setUser, setToken } = useAuthStore()
 const router = useRouter()
 const { login } = useAuth()
 
@@ -32,10 +37,19 @@ const connecter = () => {
     console.log('login', loginInfo.value)
     login(loginInfo.value.email, loginInfo.value.motDePasse).then((data) => {
         console.log('utilisateur', data)
+        setToken(data.token)
+        setUser(data.data)
         router.push('/')
     }).catch(err => console.log("Probleme lors de l'ajout", err))
 }
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.btn-primary{
+    margin-right: 1rem;
+}
+ a{
+    text-decoration: none;
+ }
+</style>

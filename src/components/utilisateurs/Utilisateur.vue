@@ -57,12 +57,12 @@ const gererSuppression = () => {
 
 // La fonction pour la redirection vers la page Detail
 const allerADetail=()=>{
-    router.push(`/details/${props.utilisateur.id}`)
+    router.push(`/utilisateurs/details/${props.utilisateur.id}`)
 }
 
 // La fonction pour la redirection vers la page Detail
 const allerAMiseAJour=()=>{
-    router.push(`/mise-a-jour/${props.utilisateur.id}`)
+    router.push(`/utilisateurs/${props.utilisateur.id}`)
 }
     
 </script>

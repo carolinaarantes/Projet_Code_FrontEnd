@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <h1>Profil de {{ utilisateur.photo }} {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1> <!--avec photo?-->
-        <p>Biographie</p>        
-        <div>Email: {{ utilisateur.email }}</div>
-        <div>Telephone: {{ utilisateur.telephone }}</div>
-        <div>Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
+    <div class="detail">
+        <h1 style="margin-left: 5vw;">Profil de {{ utilisateur.photo }} {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1> <!--avec photo?-->
+        <p style="margin-left: 5vw;">Biographie</p>        
+        <div style="margin-left: 5vw;">Email: {{ utilisateur.email }}</div>
+        <div style="margin-left: 5vw;">Telephone: {{ utilisateur.telephone }}</div>
+        <div style="margin-left: 5vw;">Date de naissance: {{ utilisateur.dateDeNaissance }}</div>
     </div>
 </template>
 
@@ -36,4 +36,5 @@ onBeforeMount(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
