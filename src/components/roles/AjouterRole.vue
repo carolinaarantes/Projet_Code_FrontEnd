@@ -47,7 +47,10 @@ const soumettre = () => {
     ajouterRole(role.value).then(() => {
         router.push('/')
         role.value.categorie = '';
-    }).catch(err => console.log("Probleme lors de l'ajout du role", err))
+        console.log("Role ajouté avec succès!");
+
+    })
+    .catch(err => console.log("Probleme lors de l'ajout du role", err))
 }
 </script>
 
