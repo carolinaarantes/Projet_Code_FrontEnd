@@ -4,7 +4,7 @@
             <div class="mb-3">
                 <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
                 <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
-            </div>           
+            </div>
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
                 <input :style="{ border: errors.nom ? '2px red solid' : '' }" v-model="utilisateur.nom" type="text"
@@ -43,17 +43,20 @@
             </div>
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
-                <select :style="{ border: errors.role ? '2px red solid' : '' }" v-model="utilisateur.role" class="form-control" id="role" style="width: 40vw;">
+                <select :style="{ border: errors.role ? '2px red solid' : '' }" v-model="utilisateur.role"
+                    class="form-control" id="role" style="width: 40vw;">
                     <option value="" disabled selected>Sélectionnez un rôle</option>
-                    <option v-for="role in rolesFromDatabase" :key="role.id" :value="role.id">{{ role.nom }}</option>
+                    <option v-for="role in rolesFromDatabase" :key="role.id" :value="role.id">{{ role.categorie }}</option>
                 </select>
                 <div class="text-danger pb-2" v-if="errors.role">{{ errors.role }}</div>
+
             </div>
             <div class="mb-3">
                 <label for="programme" class="form-label">Programme</label>
                 <select v-model="utilisateur.programme" class="form-control" id="programme" style="width: 40vw;">
                     <option value="" disabled selected>Sélectionnez un programme</option>
-                    <option v-for="programme in programmesFromDatabase" :key="programme.id" :value="programme.id">{{ programme.nom }}</option>
+                    <option v-for="programme in programmesFromDatabase" :key="programme.id" :value="programme.id">{{
+                        programme.nom }}</option>
                 </select>
             </div>
 
@@ -73,7 +76,7 @@ import axios from 'axios';
 const router = useRouter()
 const { ajouterUtilisateur } = useUtilisateur()
 const { listeRoles } = useRole();
-const {listeProgrammes} = useProgramme();
+const { listeProgrammes } = useProgramme();
 
 
 const rolesFromDatabase = ref([]); // Assurez-vous de charger les rôles depuis la base de données
@@ -88,7 +91,7 @@ const utilisateur = ref({
     email: '',
     motPasse: '',
     role: '',
-    programme:''
+    programme: ''
 })
 
 // Variable pour stocker les erreurs de validations des champs
@@ -100,7 +103,7 @@ const errors = ref({
     email: '',
     motPasse: '',
     role: '',
-    programme:''
+    programme: ''
 })
 
 const soumettre = () => {
@@ -108,7 +111,7 @@ const soumettre = () => {
     console.log('utilisateur', utilisateur.value)
 
     //Ne pas soumettre le formulaire si tous les champs (sauf programme) ne sont pas valides
-    if (!valider(utilisateur.value, {excludeProgramme: true})) return
+    if (!valider(utilisateur.value, { excludeProgramme: true })) return
 
     ajouterUtilisateur(utilisateur.value).then(() => {
 
@@ -126,7 +129,7 @@ const soumettre = () => {
                 backendError[error.path] = error.msg;
             }
         } else {
-           
+
             console.error("Backend errors format is not as expected:", backendErrors);
         }
         // Copier les erreurs du backend mises en forme dans la variable errors
@@ -136,7 +139,7 @@ const soumettre = () => {
 }
 
 const handleFileChange = (event) => {
-    const file = event.target.files[0];    
+    const file = event.target.files[0];
     utilisateur.photo = URL.createObjectURL(file);
 };
 
@@ -210,8 +213,8 @@ const validerChamp = (champ, utilisateur) => {
         case 'role':
             if (!utilisateur.role) {
                 errors.value.role = 'Le champ "Role" est obligatoire';
-            return false;
-        } else if (!rolesFromDatabase.value.some(role => role.id === utilisateur.role)) {
+                return false;
+            } else if (!rolesFromDatabase.value.some(role => role.id === utilisateur.role)) {
                 errors.value.role = 'Le rôle sélectionné n\'est pas valide';
                 return false;
             } else {
@@ -235,10 +238,10 @@ watchEffect(() => {
         return;
     }
     errors.value.telephone = '';
-    if(utilisateur.value.telephone !== '' && !telephoneRegex.test(utilisateur.value.telephone)){
+    if (utilisateur.value.telephone !== '' && !telephoneRegex.test(utilisateur.value.telephone)) {
         errors.value.telephone = "Le numéro de téléphone doit être d'une longueur de 10 chiffres"
         return
-    }   
+    }
     errors.value.motPasse = '';
     if (utilisateur.value.motPasse !== '' && !mdpRegex.test(utilisateur.value.motPasse)) {
         errors.value.motPasse = "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial";
@@ -257,8 +260,9 @@ watchEffect(() => {
 // Fonction pour charger les rôles depuis la base de données
 const chargerRoles = async () => {
     try {
-        const roles = await listeRoles();
-        rolesFromDatabase.value = roles.map(roles => roles.categorie);
+        rolesFromDatabase.value = await listeRoles();
+        console.log('Roles fetched:', rolesFromDatabase.value);
+        // rolesFromDatabase.value = roles.map(roles => roles.categorie);
     } catch (error) {
         console.error('Erreur lors du chargement des rôles', error);
     }
@@ -282,6 +286,4 @@ onMounted(async () => {
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
