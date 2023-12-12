@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <form @submit.prevent="mettreAJour" style="height: 17vw; margin-left: 10vw;">
+    <div class="form">
+        <form @submit.prevent="mettreAJour">
             <div class="mb-3">
-                <label for="moyenne" class="form-label" style="margin-top: 2vw;">Moyenne</label>
-                <input v-model="bulletin.moyenne" type="text" class="form-control" id="moyenne" style="width: 40vw;">
+                <label for="moyenne" class="form-label">Moyenne</label>
+                <input v-model="bulletin.moyenne" type="text" class="form-control" id="moyenne">
             </div>            
-            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Mettre a jour</button>
+            <button type="submit" class="btn btn-primary">Mettre a jour</button>
         </form>
     </div>
 </template>

@@ -27,11 +27,13 @@ body{
 
 form{
   background-color: rgb(233, 232, 232);
-  width: 50vw;
+  padding: 3vw; 
+  width: fit-content; 
+  margin-left: 10vw;
 }
 
-.mb-3{
-  margin-left: 5vw;
+.mb-3 input{
+  width: 40vw;
 }
 
 .detail{
@@ -44,5 +46,8 @@ form{
 .detail_user{
   background-color: rgb(233, 232, 232);
   width: 40vw;
-  height: 5vw;
+  height: auto;
+  padding: 1vw;
+  margin-top: -4vw;
+  margin-left: 0;
 }

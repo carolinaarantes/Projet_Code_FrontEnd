@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="form">
         <form @submit.prevent="mettreAJour" id="role-form">
             <div class="mb-3">
                 <label for="categorie" class="form-label" id="label-categorie">Categorie</label>

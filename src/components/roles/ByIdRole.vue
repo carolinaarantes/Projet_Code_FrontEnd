@@ -1,23 +1,21 @@
 <template>
-    <div class="detail">
-        <h1 class="detail-title">Role</h1>
-        
-            <div class="detail-info">Categorie: {{ role.categorie }}</div>        
-
-        <form class="detail_user">
-            <div class="row mb-2">
-                <label for="userId" class="col-md-2">Entrez l'ID de l'utilisateur à rechercher:</label>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <input class="form-control me-2" id="barRechercheRole" type="search" placeholder="Search" aria-label="Search">
+    <form class="detail_user">
+                <div class="row mb-2">
+                    <label for="userId" class="col-md-2" style="white-space: nowrap; margin-left: 2vw;">Entrez l'ID de rôle à rechercher:</label>
                 </div>
-                <div class="col-md-4">
-                    <button @click="rechercherProfil" class="btn btn-primary">Rechercher</button>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="margin-left: 2vw;">
+                    </div>
+                    <div class="col-md-4">
+                        <button @click="rechercherProfil" class="btn btn-primary" style="margin-left: 2vw;">Rechercher</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>  
 
+    <div>
+        <h1 class="detail-title" style="margin-top: 2vw;">Role</h1>        
+        <div class="detail-info">Categorie: {{ role.categorie }}</div>
         <div v-if="error" class="error-message">{{ error }}</div>
     </div>
 </template>
@@ -72,10 +70,5 @@ onBeforeMount(async () => {
 
 .error-message {
     margin-left: 5vw;
-}
-
-.detail_user {
-    margin-left: 5vw;
-    margin-top: 5vh;  /* Adjusted margin-top value for responsiveness */
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Zone de recherche -->        
-            <form class="detail_user" style="margin-top: -4vw;">
+            <form class="detail_user">
                 <div class="row mb-2">
                     <label for="userId" class="col-md-2" style="white-space: nowrap; margin-left: 2vw;">Entrez l'ID de l'utilisateur à rechercher:</label>
                 </div>

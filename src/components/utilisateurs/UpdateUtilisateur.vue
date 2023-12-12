@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <form @submit.prevent="mettreAJour" style="height: 60vw; margin-left: 10vw;">
+    <div class="form">
+        <form @submit.prevent="mettreAJour">
             <div class="mb-3">
-                <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
-                <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
+                <label for="photo" class="form-label">Photo</label>
+                <input @change="handleFileChange" type="file" class="form-control" id="photo">
             </div>
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
@@ -57,7 +57,7 @@
                 </select>
                 <div class="text-danger pb-2" v-if="errors.role">{{ errors.role }}</div>
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="mettreAJour">Modifier</button>
+            <button type="submit" class="btn btn-primary" @click="mettreAJour">Modifier</button>
         </form>
     </div>
 </template>
@@ -223,7 +223,4 @@ watchEffect(() => {
 </script>
 
 <style lang="scss" scoped>
-input{
-    width: 40vw;
-}
 </style>
