@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <form @submit.prevent="soumettre" style="height: 60vw; margin-left: 10vw;">
+    <div class="form">
+        <form @submit.prevent="soumettre">
             <div class="mb-3">
-                <label for="photo" class="form-label" style="margin-top: 2vw;">Photo</label>
+                <label for="photo" class="form-label">Photo</label>
                 <input @change="handleFileChange" type="file" class="form-control" id="photo" style="width: 40vw;">
             </div>
             <div class="mb-3">
@@ -60,7 +60,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;" @click="soumettre">Ajouter</button>
+            <button type="submit" class="btn btn-primary" @click="soumettre">Ajouter</button>
         </form>
     </div>
 </template>
@@ -115,7 +115,7 @@ const soumettre = () => {
 
     ajouterUtilisateur(utilisateur.value).then(() => {
 
-        router.push('/utilisateurs')
+        router.push('/utilisateurs/ajout')
     }).catch(err => {
         console.log("Probleme lors de l'ajout de l'utilisateur", err)
 
@@ -272,7 +272,8 @@ const chargerRoles = async () => {
 const chargerProgrammes = async () => {
     try {
         const programmes = await listeProgrammes();
-        programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
+        console.log('Programmes fetched:', rolesFromDatabase.value);
+        //programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
     } catch (error) {
         console.error('Erreur lors du chargement des programmes', error);
     }

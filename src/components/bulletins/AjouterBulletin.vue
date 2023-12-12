@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <form @submit.prevent="soumettre" class="form-container" id="bulletin-form">
+    <div class="form">
+        <form @submit.prevent="soumettre">
             <div class="mb-3">
                 <label for="moyenne" class="form-label" id="label-moyenne">Moyenne</label>
                 <input :style="{ border: error.moyenne ? '2px solid red' : '', outline: 'none' }" type="text" class="form-control" v-model="bulletin.moyenne" id="moyenneInput" required>

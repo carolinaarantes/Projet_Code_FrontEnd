@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <form @submit.prevent="mettreAJour" style="height: 27vw; margin-left: 10vw;">
+    <div class="form">
+        <form @submit.prevent="mettreAJour">
             <div class="mb-3">
-                <label for="jourDeSemaine" class="form-label" style="margin-top: 2vw;">Jour de la semaine</label>
-                <select v-model="horaire.jourDeSemaine" type="text" class="form-control" id="jourDeSemaine" style="width: 40vw;">
+                <label for="jourDeSemaine" class="form-label">Jour de la semaine</label>
+                <select v-model="horaire.jourDeSemaine" type="text" class="form-control" id="jourDeSemaine">
                     <option value="Lundi">Lundi</option>
                     <option value="Mardi">Mardi</option>
                     <option value="Mercredi">Mercredi</option>
@@ -15,14 +15,14 @@
             </div>
             <div class="mb-3">
                 <label for="horaireDeDebut" class="form-label">Horaire de debut</label>
-                <input v-model="horaire.horaireDeDebut" type="time" class="form-control" id="horaireDeDebut" style="width: 40vw;">
+                <input v-model="horaire.horaireDeDebut" type="time" class="form-control" id="horaireDeDebut">
             </div>
             <div class="mb-3">
                 <label for="horaireDeFin" class="form-label">Horaire de fin</label>
-                <input v-model="horaire.horaireDeFin" type="time" class="form-control" id="horaireDeFin" style="width: 40vw;">
+                <input v-model="horaire.horaireDeFin" type="time" class="form-control" id="horaireDeFin">
             </div>
             
-            <button type="submit" class="btn btn-primary" style="margin-left: 5vw;">Mettre a jour</button>
+            <button type="submit" class="btn btn-primary">Mettre a jour</button>
         </form>
     </div>
 </template>
