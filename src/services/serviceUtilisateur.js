@@ -16,7 +16,7 @@ const useUtilisateur = () =>{
     const ajouterUtilisateur = async(utilisateur)=>{
         try{
 
-            const roleDetail = await axios.get(`/api/roles/${utilisateur.roles}`)
+            const roleDetail = await frontAPI.get(`/roles/${utilisateur.roles}`)
             const utilisateurPayload = {
                 ...utilisateur,
                 roles:roleDetail.data                

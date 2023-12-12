@@ -28,13 +28,13 @@ const router = useRouter()
               Utilisateurs
             </RouterLink>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><RouterLink class="dropdown-item" to="/utilisateurs/ajout">Ajouter utilisateur</RouterLink></li>
+              <li><RouterLink class="dropdown-item" to='/utilisateurs/ajout' key="ajout-utilisateur">Ajouter utilisateur</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/utilisateurs/details/:id">Détails utilisateur</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/utilisateurs/mise-a-jour/:id">Modifier utilisateur</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/utilisateurs">Liste d'utilisateurs</a></li>
+              <li><RouterLink class="dropdown-item" to="/utilisateurs">Liste d'utilisateurs</RouterLink></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -49,7 +49,8 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/roles/mise-a-jour/:id">Modifier role</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/roles">Liste de roles</a></li>            </ul>
+              <li><RouterLink class="dropdown-item" to="/roles">Liste de roles</RouterLink></li>
+            </ul>
 
           </li>
           <li class="nav-item dropdown">
@@ -63,7 +64,8 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/programmes/mise-a-jour/:id">Modifier programme</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/programmes">Liste de programmes</a></li>            </ul>
+              <li><RouterLink class="dropdown-item" to="/programmes" key="home-programme">Liste de programmes</RouterLink></li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/cours" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,7 +78,7 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/cours/mise-a-jour/:id">Modifier cours</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/cours">Liste de cours</a></li>            
+              <li><RouterLink class="dropdown-item" to="/cours">Liste de cours</RouterLink></li>            
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -90,7 +92,8 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/horaires/mise-a-jour/:id">Modifier horaire</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/horaires">Liste de horaires</a></li>            </ul>
+              <li><RouterLink class="dropdown-item" to="/horaires">Liste d'horaires</RouterLink></li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/examens" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,7 +106,8 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/examens/mise-a-jour/:id">Modifier examen</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/examens">Liste d'examens</a></li>            </ul>
+              <li><RouterLink class="dropdown-item" to="/examens">Liste d'examnens</RouterLink></li> 
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <RouterLink class="nav-link dropdown-toggle" to="/bulletins" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -116,7 +120,8 @@ const router = useRouter()
               <li><hr class="dropdown-divider"></li>
               <li><RouterLink class="dropdown-item" to="/bulletins/mise-a-jour/:id">Modifier bulletin</RouterLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/bulletins">Liste de bulletins</a></li>            </ul>
+              <li><RouterLink class="dropdown-item" to="/bulletins">Liste de bulletins</RouterLink></li>
+            </ul>
           </li>
         </ul>
         <div class="d-flex align-items-center gx-20">
