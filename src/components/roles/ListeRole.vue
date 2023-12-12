@@ -7,25 +7,20 @@
           <th class="header-cell">Categorie</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="role in roles" :key="role.id">
+      <tbody v-if="roles && roles.length">
+        <Role v-for="unRole in roles" :key="unRole.id" :role="unRole"/>
           <td>{{ role.id }}</td>
           <td>{{ role.categorie }}</td>
           <td>
             <button @click="supprimer(role.id)">Supprimer</button>
-          </td>
-        </tr>
-        <tr v-if="!roles || !roles.length">
-          <td colspan="3">Loading roles...</td>
-        </tr>
+          </td>       
       </tbody>
+      <tr v-else>
+        <td colspan="3">Loading roles...</td>
+      </tr>
     </table>
-    <button
-      :disabled="loggedInUser?.id"
-      class="btn btn-primary"
-      :class="[loggedInUser?.id ? 'btn-secondary' : 'btn btn-primary']"
-      @click="allerAjouterRole"
-    >
+    <button :disabled="loggedInUser?.id" class="btn btn-primary"
+      :class="[loggedInUser?.id ? 'btn-secondary' : 'btn btn-primary']" @click="allerAjouterRole">
       Ajouter un role
     </button>
   </div>
@@ -50,35 +45,46 @@ const { listeRoles, supprimerRole } = useRole()
 const roles = ref([]);
 
 onBeforeMount(async () => {
-    try {
-        const data = await listeRoles();
-        console.log('Liste role', data);
-        roles.value = data
-        console.log('Liste role', roles.value);
-    } catch (error) {
-        console.error('Error fetching roles:', error);
-    }
+  try {
+    const data = await listeRoles();
+    console.log('Liste role', data);
+    roles.value = data
+    console.log('Liste role', roles.value);
+  } catch (error) {
+    console.error('Error fetching roles:', error);
+  }
 });
 
 const supprimer = (id) => {
-    console.log('emits', id)
-    supprimerRole(id).then((data) => {
-        console.log('suppression', data)
+  console.log('emits', id)
+  supprimerRole(id).then((data) => {
+    console.log('suppression', data)
 
-        listeRoles().then(data => {
-            roles.value = data
+    listeRoles().then(data => {
+      roles.value = data
 
-            console.log('Liste role', data)
-        }).catch(err => {
-            console.log(err.message)
-        })
-
+      console.log('Liste role', data)
+    }).catch(err => {
+      console.log(err.message)
     })
+
+  })
 }
 
 const allerAjouterRole = () => {
-    router.push('/roles/ajout')
+  router.push('/roles/ajout')
 }
+
+const afficherListeRoles = async () => {
+  try {
+    const roles = await listeRoles();
+    console.log('List of roles:', roles);
+  } catch (error) {
+    console.error('Error fetching roles:', error);
+  }
+};
+
+afficherListeRoles();
 
 </script>
 
@@ -89,8 +95,8 @@ const allerAjouterRole = () => {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .header-cell {
   color: black;
 }
-
 </style>
