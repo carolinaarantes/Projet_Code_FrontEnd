@@ -262,7 +262,7 @@ const chargerRoles = async () => {
     try {
         rolesFromDatabase.value = await listeRoles();
         console.log('Roles fetched:', rolesFromDatabase.value);
-        // rolesFromDatabase.value = roles.map(roles => roles.categorie);
+         rolesFromDatabase.value = roles.map(roles => roles.categorie);
     } catch (error) {
         console.error('Erreur lors du chargement des rôles', error);
     }
