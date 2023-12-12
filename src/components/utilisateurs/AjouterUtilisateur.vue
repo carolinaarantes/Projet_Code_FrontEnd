@@ -25,9 +25,9 @@
             </div>
             <div class="mb-3">
                 <label for="telephone" class="form-label">Telephone</label>
-                <input :style="{ border: errors.telephone ? '2px red solid' : '' }" v-model="utilisateur.telephone"
+                <input :style="{ border: errors.numeroTelephone ? '2px red solid' : '' }" v-model="utilisateur.numeroTelephone"
                     @input="validerTelephone" type="tel" class="form-control" id="telephone" style="width: 40vw;">
-                <div class="text-danger pb-2" v-if="errors.telephone">{{ errors.telephone }}</div>
+                <div class="text-danger pb-2" v-if="errors.numeroTelephone">{{ errors.numeroTelephone }}</div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -87,7 +87,7 @@ const utilisateur = ref({
     nom: '',
     prenom: '',
     dateNaissance: '',
-    telephone: '',
+    numeroTelephone: '',
     email: '',
     motPasse: '',
     role: '',
@@ -99,7 +99,7 @@ const errors = ref({
     nom: '',
     prenom: '',
     dateNaissance: '',
-    telephone: '',
+    numeroTelephone: '',
     email: '',
     motPasse: '',
     role: '',
@@ -175,7 +175,7 @@ const valider = utilisateur => {
         validerChamp(champ, utilisateur)
     }
 
-    if (!mdpRegex.test(utilisateur.motPasse) || !emailRegex.test(utilisateur.email) || !nomRegex.test(utilisateur.nom) || !nomRegex.test(utilisateur.prenom) || !telephoneRegex.test(utilisateur.telephone)) {
+    if (!mdpRegex.test(utilisateur.motPasse) || !emailRegex.test(utilisateur.email) || !nomRegex.test(utilisateur.nom) || !nomRegex.test(utilisateur.prenom) || !telephoneRegex.test(utilisateur.numeroTelephone)) {
         return false
     }
     return true
@@ -195,7 +195,7 @@ const validerChamp = (champ, utilisateur) => {
                 errors.value[champ] = `Le mot de passe est invalide !`
             }
             break
-        case 'telephone':
+        case 'numeroTelephone':
             if (!telephoneRegex.test(utilisateur[champ])) {
                 errors.value[champ] = "Le numéro de téléphone est invalide !"
             }
@@ -237,9 +237,9 @@ watchEffect(() => {
         errors.value.prenom = "Le prénom doit être d'une taille minimum de 4 lettres";
         return;
     }
-    errors.value.telephone = '';
-    if (utilisateur.value.telephone !== '' && !telephoneRegex.test(utilisateur.value.telephone)) {
-        errors.value.telephone = "Le numéro de téléphone doit être d'une longueur de 10 chiffres"
+    errors.value.numeroTelephone = '';
+    if (utilisateur.value.numeroTelephone !== '' && !telephoneRegex.test(utilisateur.value.numeroTelephone)) {
+        errors.value.numeroTelephone = "Le numéro de téléphone doit être d'une longueur de 10 chiffres"
         return
     }
     errors.value.motPasse = '';

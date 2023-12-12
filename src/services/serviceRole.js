@@ -5,11 +5,15 @@ import axios from 'axios'
 
 const useRole = () =>{
 
-    const listeRoles = async()=>{
-        const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles`)
-    
-        return resultat.data.data
-    }
+    const listeRoles = async () => {
+        try {
+          const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles`);
+          return resultat.data.data;
+        } catch (error) {
+          console.error('Error fetching roles:', error);
+          throw error;
+        }
+      };
 
     const ajouterRole = async(role)=>{
         const resultat = await axios.post(`${import.meta.env.VITE_BASE_URL}/roles`, role)
