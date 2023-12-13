@@ -1,6 +1,9 @@
 <template>
     <tr>
         <td>
+            {{ examen.id }}
+        </td>
+        <td>
             {{ examen.matiere }}
         </td>
         <td>
@@ -24,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, defineProps, defineEmits } from 'vue';
 
 //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
@@ -34,7 +37,7 @@ const props = defineProps({
     examen: {
         type: Object,
         default: () => ({
-            id:'',
+            id:'test',
             matiere: 'test',
             date_examen: 'test',
             horaire_de_debut: 'test',

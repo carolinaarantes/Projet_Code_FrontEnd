@@ -1,7 +1,11 @@
 <template>
     <tr>
-        <td>{{ role.id }}</td>
-        <td>{{ role.categorie }}</td>
+        <td>
+            {{ role.id }}
+        </td>
+        <td>
+            {{ role.categorie }}
+        </td>
         <td>
             <button @click="allerADetail" class="btn btn-primary">Details</button>
             <button @click="allerAMiseAJour" class="btn btn-success">Editer</button>
@@ -12,6 +16,7 @@
 
 <script setup>
 import { ref, reactive, defineProps, defineEmits } from 'vue';
+
 //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
 
@@ -20,7 +25,10 @@ const router = useRouter()
 const props = defineProps({
     role: {
         type: Object,
-        default: () => ({id: '',categorie: '',})
+        default: () => ({
+            id: '',
+            categorie: '',
+        })
     }
 })
 
@@ -44,4 +52,4 @@ const allerAMiseAJour = () => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

@@ -3,44 +3,46 @@ import axios from 'axios'
 
 // Creation des composables
 
-const useRole = () =>{
+const useRole = () => {
 
-    const listeRoles = async () => {
-        try {
-          const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles`);
-          return resultat.data.data;
-        } catch (error) {
-          console.error('Error fetching roles:', error);
-          throw error;
-        }
-      };
-
-    const ajouterRole = async(role)=>{
-        const resultat = await axios.post(`${import.meta.env.VITE_BASE_URL}/roles`, role)
-
-        return resultat.data.data
+  const listeRoles = async () => {
+    try {
+      const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles`);
+      const roles = resultat.data;
+      console.log('Liste des cours:', roles);
+      return roles;
+    } catch (error) {
+      console.error('Erreur lors de la récupération des cours:', error);
+      throw error;
     }
+  };
 
-    const getRoleById = async (id)=>{
-        const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles/${id}`)
-    
-        return resultat.data.data
-    }
+  const ajouterRole = async (role) => {
+    const resultat = await axios.post(`${import.meta.env.VITE_BASE_URL}/roles`, role)
 
-    const supprimerRole = async (id)=>{
+    return resultat.data.data
+  }
 
-        const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/roles/${id}`)
-    
-        return resultat.data.data
-    }
-    
-    const updateRole = async (id, role) => {
-        const resultat = await axios.put(`${import.meta.env.VITE_BASE_URL}/roles/${id}`, role)
-            return resultat.data.data
-        
-    }
+  const getRoleById = async (id) => {
+    const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles/${id}`)
 
-    return{listeRoles, ajouterRole, getRoleById, supprimerRole, updateRole}
+    return resultat.data.data
+  }
+
+  const supprimerRole = async (id) => {
+
+    const resultat = await axios.delete(`${import.meta.env.VITE_BASE_URL}/roles/${id}`)
+
+    return resultat.data.data
+  }
+
+  const updateRole = async (id, role) => {
+    const resultat = await axios.put(`${import.meta.env.VITE_BASE_URL}/roles/${id}`, role)
+    return resultat.data.data
+
+  }
+
+  return { listeRoles, ajouterRole, getRoleById, supprimerRole, updateRole }
 }
 
 export default useRole

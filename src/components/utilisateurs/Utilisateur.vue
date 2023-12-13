@@ -1,8 +1,9 @@
 <template>
     <tr>
         <td>
-            {{ utilisateur.photo }}
+            {{ utilisateur.id }}<!--La photo on va juste la montrer dans le detail de l'utilisateur dans un div au top de la page -->
         </td>
+        
         <td>
             {{ utilisateur.nom }}
         </td>
@@ -10,10 +11,10 @@
             {{ utilisateur.prenom }}
         </td>
         <td>
-            {{ utilisateur.dateDeNaissance }}
+            {{ utilisateur.dateNaissance }}
         </td>
         <td>
-            {{ utilisateur.telephone }}
+            {{ utilisateur.numeroTelephone }}
         </td>
         <td>
             {{ utilisateur.email }}
@@ -40,8 +41,8 @@ const props = defineProps({
             photo:'',
             nom: 'test',
             prenom: 'test',
-            dateDeNaissance: 'test',
-            telephone: 'test',
+            dateNaissance: 'test',
+            numeroTelephone: 'test',
             email: 'test',            
         })
     }

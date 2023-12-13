@@ -6,9 +6,15 @@ import axios from 'axios'
 const useBulletin = () =>{
 
     const listeBulletins = async()=>{
-        const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/bulletins`)
-    
-        return resultat.data.data
+        try {
+            const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/bulletins`)
+            const bulletins = resultat.data;
+            console.log('Liste des bulletins:', bulletins);
+            return bulletins;
+        } catch (error) {
+            console.error('Erreur lors de la récupération des bulletins:', error);
+            throw error;
+        }
     }
 
     const ajouterBulletin = async(bulletin)=>{

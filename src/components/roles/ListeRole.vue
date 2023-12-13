@@ -3,26 +3,15 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class="header-cell">Id</th>
+          <th class="header-cell">ID du role</th>
           <th class="header-cell">Categorie</th>
         </tr>
       </thead>
-      <tbody v-if="roles && roles.length">
-        <Role v-for="unRole in roles" :key="unRole.id" :role="unRole"/>
-          <td>{{ role.id }}</td>
-          <td>{{ role.categorie }}</td>
-          <td>
-            <button @click="supprimer(role.id)">Supprimer</button>
-          </td>       
+      <tbody>
+        <Role v-for="unRole in roles.Roles" :key="unRole.id" :role="unRole" />
       </tbody>
-      <tr v-else>
-        <td colspan="3">Loading roles...</td>
-      </tr>
     </table>
-    <button :disabled="loggedInUser?.id" class="btn btn-primary"
-      :class="[loggedInUser?.id ? 'btn-secondary' : 'btn btn-primary']" @click="allerAjouterRole">
-      Ajouter un role
-    </button>
+    <button class="btn btn-primary" @click="allerAjouterRole">Ajouter un role</button>    
   </div>
 </template>
 
@@ -39,52 +28,51 @@ const store = useAuthStore()
 const { loggedInUser } = storeToRefs(store)
 const router = useRouter()
 const { role } = defineProps(['role']);
-
 const { listeRoles, supprimerRole } = useRole()
+const roles = ref({ Roles: [] });
 
-const roles = ref([]);
 
-onBeforeMount(async () => {
-  try {
-    const data = await listeRoles();
-    console.log('Liste role', data);
+onBeforeMount(() => {
+
+  listeRoles().then(data => {
+
     roles.value = data
-    console.log('Liste role', roles.value);
-  } catch (error) {
-    console.error('Error fetching roles:', error);
-  }
+
+    console.log('Liste role', data);
+
+  });
+
 });
 
 const supprimer = (id) => {
+
   console.log('emits', id)
+
   supprimerRole(id).then((data) => {
+
     console.log('suppression', data)
 
     listeRoles().then(data => {
+
       roles.value = data
 
-      console.log('Liste role', data)
+      console.log('Liste roles', data)
+
     }).catch(err => {
+
       console.log(err.message)
+
     })
 
-  })
+  }).catch((error) => {
+    console.error("Erreur lors de la suppression du role:", error);
+  });
 }
 
 const allerAjouterRole = () => {
   router.push('/roles/ajout')
 }
 
-const afficherListeRoles = async () => {
-  try {
-    const roles = await listeRoles();
-    console.log('List of roles:', roles);
-  } catch (error) {
-    console.error('Error fetching roles:', error);
-  }
-};
-
-afficherListeRoles();
 
 </script>
 
