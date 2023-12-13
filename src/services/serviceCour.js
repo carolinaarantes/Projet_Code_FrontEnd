@@ -4,12 +4,18 @@ import axios from 'axios'
 // Creation des composables
 
 const useCour = () =>{
-
-    const listeCours = async()=>{
-        const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/cours`)
-    
-        return resultat.data.data
-    }
+   
+    const listeCours = async () => {
+        try {
+            const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/cours`)
+            const cours = resultat.data;
+            console.log('Liste des cours:', cours);
+            return cours;
+        } catch (error) {
+            console.error('Erreur lors de la récupération des cours:', error);
+            throw error;
+        }
+    };
 
     const ajouterCour = async(cour)=>{
         const resultat = await axios.post(`${import.meta.env.VITE_BASE_URL}/cours`, cour)

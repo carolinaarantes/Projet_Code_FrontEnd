@@ -79,8 +79,8 @@ const { listeRoles } = useRole();
 const { listeProgrammes } = useProgramme();
 
 
-const rolesFromDatabase = ref([]); // Assurez-vous de charger les rôles depuis la base de données
-const programmesFromDatabase = ref([]); // Assurez-vous de charger les programmes depuis la base de données
+const rolesFromDatabase = ref([]); 
+const programmesFromDatabase = ref([]); 
 
 const utilisateur = ref({
     photo: '',
@@ -260,7 +260,7 @@ watchEffect(() => {
 // Fonction pour charger les rôles depuis la base de données
 const chargerRoles = async () => {
     try {
-        rolesFromDatabase.value = await listeRoles();
+        const roles = await listeRoles();
         console.log('Roles fetched:', rolesFromDatabase.value);
          rolesFromDatabase.value = roles.map(roles => roles.categorie);
     } catch (error) {
@@ -273,7 +273,7 @@ const chargerProgrammes = async () => {
     try {
         const programmes = await listeProgrammes();
         console.log('Programmes fetched:', rolesFromDatabase.value);
-        //programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
+        programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
     } catch (error) {
         console.error('Erreur lors du chargement des programmes', error);
     }

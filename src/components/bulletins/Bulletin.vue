@@ -1,6 +1,9 @@
 <template>
     <tr>
         <td>
+            {{ bulletin.id }}
+        </td>
+        <td>
             {{ bulletin.moyenne }}
         </td>
        
@@ -12,17 +15,19 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, defineProps, defineEmits } from 'vue';
 
 //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
+
 const router=useRouter()
 
+//********** */ ICI IL FAUT METTRE LES MEMES NOMS QUE DANS LA BASE DE DONNEE SINON CA NE CHARGE PAS LES DONNEES ***************/
 const props = defineProps({
     bulletin: {
         type: Object,
         default: () => ({
-            id:'',
+            id:'test',
             moyenne: 'test',           
         })
     }

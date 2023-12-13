@@ -6,9 +6,15 @@ import axios from 'axios'
 const useProgramme = () =>{
 
     const listeProgrammes = async()=>{
-        const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/programmes`)
-    
-        return resultat.data.data
+        try {
+            const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/programmes`)
+            const programmes = resultat.data;
+            console.log('Liste des cours:', programmes);
+            return programmes;
+        } catch (error) {
+            console.error('Erreur lors de la récupération des cours:', error);
+            throw error;
+        } 
     }
 
     const ajouterProgramme = async(programme)=>{

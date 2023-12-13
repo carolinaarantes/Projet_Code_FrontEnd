@@ -1,6 +1,9 @@
 <template>
     <tr>
         <td>
+            {{ cour.id }}
+        </td>
+        <td>
             {{ cour.nom_du_cour }}
         </td>
         <td>
@@ -10,7 +13,8 @@
             {{ cour.credits }}
         </td>
         
-        <td><button @click="allerADetail" class="btn btn-primary">Details</button>
+        <td>
+            <button @click="allerADetail" class="btn btn-primary">Details</button>
             <button @click="allerAMiseAJour" class="btn btn-success">Editer</button>
             <button class="btn btn-danger" @click="gererSuppression"> Supprimer</button>
         </td>
@@ -18,17 +22,18 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, defineProps, defineEmits } from 'vue';
 
 //Importer le module qui permet la reidrection vers une autre page
 import { useRouter } from 'vue-router';
+
 const router=useRouter()
 
 const props = defineProps({
     cour: {
         type: Object,
         default: () => ({
-            id:'',
+            id:'test',
             nom_du_cour: 'test',
             salle_du_cours: 'test',
             credits: 'test',
@@ -36,6 +41,7 @@ const props = defineProps({
         })
     }
 })
+
 
 const emit = defineEmits(['supprimer', 'editer'])
 
