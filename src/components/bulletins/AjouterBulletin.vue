@@ -40,11 +40,12 @@ const bulletin = ref({
     moyenne: ''
 })
 
+// Variable pour stocker les erreurs de validations des champs
 const error = ref({
     moyenne: ''
 })
 
-const moyenneRegex = /^\d+(\.\d{0,2})?$/
+const moyenneRegex = /^\d{1,3}(\.\d{0,2})?$/;
 
 //Fonction pour verifier que tout le formulaire est valide
 const valider = bulletin => {
@@ -65,10 +66,8 @@ const validerChamp = (champ, bulletin) => {
   switch (champ) {
     case 'moyenne':
       if (bulletin[champ] !== '' && !moyenneRegex.test(bulletin[champ])) {
-        error.value[champ] = 'La moyenne doit être un nombre decimal ne contenant aucune lettre.';
-      } else {
-        error.value[champ] = '';
-      }
+        error.value[champ] = 'La moyenne est un nombre décimal avec maximum 3 chiffres avant le point et de 2 chiffres après le point.';
+      } 
       break;
   }
 };

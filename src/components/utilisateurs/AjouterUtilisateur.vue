@@ -130,7 +130,7 @@ const soumettre = () => {
             }
         } else {
 
-            console.error("Backend errors format is not as expected:", backendErrors);
+            console.error("Le format des erreurs du backend n'est pas conforme aux attentes:", backendErrors);
         }
         // Copier les erreurs du backend mises en forme dans la variable errors
         errors.value = { ...errors.value, ...backendError }
