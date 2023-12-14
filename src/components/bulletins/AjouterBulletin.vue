@@ -90,7 +90,8 @@ const soumettre = () => {
     
     ajouterBulletin(bulletin.value).then(() => {
         router.push('/')
-
+        bulletin.value.moyenne = '';
+        console.log("Bulletin ajouté avec succès!");
     }).catch(err => {
         console.log("Problème lors de l'ajout du bulletin", err)
 
@@ -120,11 +121,6 @@ const soumettre = () => {
     margin-left: 10vw;
 }
 
-#label-moyenne {
-    width: 40vw;
-    margin-top: 2vw;
-}
-
 .error-message {
   color: red;
   margin-top: 0.5vw;
@@ -133,11 +129,6 @@ const soumettre = () => {
 #moyenneInput {
     width:  40vw;
     box-sizing: border-box;
-}
-
-.btn-primary{
-    margin-left: 5vw;
-    margin-top: 1em;
 }
 
 #non-admin-message-container {
@@ -160,7 +151,6 @@ const soumettre = () => {
 }
 #non-connecte-message-container {
     margin-top: 1em;
-    margin-left: 10em;
     margin-right: 10em;
 }
 

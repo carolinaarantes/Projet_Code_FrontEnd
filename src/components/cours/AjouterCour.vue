@@ -154,10 +154,7 @@ const soumettre = () => {
 </script>
 
 <style scoped>
-.btn-primary {
-    margin-left: 5vw;
-    margin-top: 1em;
-}
+
 
 .error-message {
     color: red;
@@ -185,7 +182,6 @@ const soumettre = () => {
 
 #non-connecte-message-container {
     margin-top: 1em;
-    margin-left: 10em;
     margin-right: 10em;
 }
 

@@ -1,6 +1,19 @@
 <template>
     <div class="form">
         <form @submit.prevent="mettreAJour">
+            <div class="row mb-2">
+                <label for="userId" class="col-md-2" style="white-space: nowrap;">Entrez l'ID d bulletin à
+                    rechercher:</label>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="col-md-4">
+                    <button @click="rechercherProfil" class="btn btn-primary" >Rechercher</button>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="idBulletin" class="form-label" id="label-id-bulletin">ID du Bulletin</label>
                 <input type="text" class="form-control" v-model="id" id="idBulletin" required>
@@ -36,6 +49,8 @@ const route = useRoute()
 const { id } = route.params
 const router = useRouter()
 const bulletin = ref({})
+const isAdmin = ref(true);
+const peuxAccederProfil = ref(true);
 
 const { getBulletinById, updateBulletin } = useBulletin()
 
@@ -87,6 +102,8 @@ onBeforeMount(() => {
 })
 
 const mettreAJour = () => {
+    isAdmin.value = utilisateur.value.role === 'administration';
+    peuxAccederProfil.value = isAdmin.value;
 
     if (!id.value) {
         console.error('Veuillez spécifier l\'ID du bulletin.');
@@ -102,7 +119,8 @@ const mettreAJour = () => {
     updateBulletin(id, bulletin.value).then(() => {
 
         router.push('/')
-
+        bulletin.value.moyenne = '';
+        console.log("Bulletin mis à jour avec succès!");
     }).catch(err => {
         console.log('Probleme lors de la mise a jour du bulletin', err)
 
@@ -147,10 +165,6 @@ const mettreAJour = () => {
     box-sizing: border-box;
 }
 
-.btn-primary{
-    margin-left: 5vw;
-    margin-top: 1em;
-}
 #non-admin-message-container {
     margin-top: 1em;
     margin-left: 10em;
@@ -171,7 +185,6 @@ const mettreAJour = () => {
 }
 #non-connecte-message-container {
     margin-top: 1em;
-    margin-left: 10em;
     margin-right: 10em;
 }
 

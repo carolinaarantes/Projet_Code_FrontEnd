@@ -1,6 +1,19 @@
 <template>
     <div class="form">
         <form @submit.prevent="mettreAJour" id="role-form">
+            <div class="row mb-2">
+                <label for="userId" class="col-md-2" style="white-space: nowrap;">Entrez l'ID du role à
+                    rechercher:</label>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="col-md-4">
+                    <button @click="rechercherProfil" class="btn btn-primary" >Rechercher</button>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="categorie" class="form-label" id="label-categorie">Categorie</label>
                 <input v-model="role.categorie" type="text" class="form-control" id="categorie" required>
@@ -63,21 +76,10 @@ const mettreAJour = () => {
 
 
 <style scoped>
-#role-form {
-    height: 13vw;
-    margin-left: 10vw;
-}
+
 
 #categorie {
     width: 40vw;
-}
-
-#role-submit-btn {
-    margin-left: 5vw;
-}
-
-#label-categorie {
-    margin-top: 2vw;
 }
 
 #non-admin-message-container {
@@ -100,7 +102,6 @@ const mettreAJour = () => {
 }
 #non-connecte-message-container {
     margin-top: 1em;
-    margin-left: 10em;
     margin-right: 10em;
 }
 

@@ -46,6 +46,18 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Ajouter</button>
+
+            <div v-if="!estConnecte" id="non-connecte-message-container">
+                <div id="non-connecte-message-box">
+                    <p>Vous n'êtes pas connecté</p>
+                </div>
+            </div>
+
+            <div v-if="!peuxAccederProfil" id="non-admin-message-container">
+                <div id="non-admin-message-box">
+                    <p>Vous n'êtes pas administrateur donc vous n'avez pas accès à la création d'un bulletin.</p>
+                </div>
+            </div>
         </form>
     </div>
 </template>
@@ -61,6 +73,9 @@ import axios from 'axios';
 const router = useRouter()
 const { ajouterExamen } = useExamen()
 const {listeCours} = useCour()
+const utilisateur = ref({});
+const isAdmin = ref(true);
+const peuxAccederProfil = ref(true);
 
 const coursFromDatabase = ref([]);
 
@@ -85,12 +100,21 @@ const soumettre = () => {
 
     console.log('examen', examen.value)
 
+    isAdmin.value = utilisateur.value.role === 'administration';
+    peuxAccederProfil.value = isAdmin.value;
+
     //Ne pas soumettre le formulaire si tous les champs ne sont pas valides
     if (!valider(examen.value)) return
 
     ajouterExamen(examen.value).then(() => {
 
         router.push('/')
+        examen.value.matiere = '';
+        examen.value.date_examen = '';
+        examen.value.horaire_de_debut = '';
+        examen.value.horaire_de_fin = '';
+        examen.value.salle_examen = '';
+        console.log("Horaire ajouté avec succès!");
 
     }).catch(err => {
         console.log("Probleme lors de l'ajout de l'examen", err)
@@ -223,4 +247,37 @@ onMounted(async () => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#non-admin-message-container {
+    margin-top: 1em;
+    margin-left: 10em;
+    margin-right: 10em;
+}
+#non-admin-message-box {
+    background-color: white;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#non-admin-message-box p {
+    margin: 0;
+    color: red; 
+}
+
+#non-connecte-message-container {
+    margin-top: 1em;
+    margin-right: 10em;
+}
+#non-connecte-message-box{
+    background-color: white;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#non-connecte-message-box p {
+    margin: 0;
+    color: red; 
+}</style>
