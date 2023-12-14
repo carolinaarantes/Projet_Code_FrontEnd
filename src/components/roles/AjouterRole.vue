@@ -55,21 +55,9 @@ const soumettre = () => {
 </script>
 
 <style scoped>
-#role-form {
-    height: 13vw;
-    margin-left: 10vw;
-}
 
 #categorie {
     width: 40vw;
-}
-
-#role-submit-btn {
-    margin-left: 5vw;
-}
-
-#label-categorie {
-    margin-top: 2vw;
 }
 
 #non-admin-message-container {
@@ -92,7 +80,6 @@ const soumettre = () => {
 }
 #non-connecte-message-container {
     margin-top: 1em;
-    margin-left: 10em;
     margin-right: 10em;
 }
 
