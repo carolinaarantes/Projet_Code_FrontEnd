@@ -8,7 +8,7 @@ const useRole = () => {
   const listeRoles = async () => {
     try {
       const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/roles`);
-      const roles = resultat.data;
+      const roles = resultat.data.Roles;
       console.log('Liste des cours:', roles);
       return roles;
     } catch (error) {

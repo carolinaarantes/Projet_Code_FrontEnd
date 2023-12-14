@@ -8,8 +8,8 @@ const useProgramme = () =>{
     const listeProgrammes = async()=>{
         try {
             const resultat = await axios.get(`${import.meta.env.VITE_BASE_URL}/programmes`)
-            const programmes = resultat.data;
-            console.log('Liste des cours:', programmes);
+            const programmes = resultat.data.Programmes;
+            console.log('Liste des programmes :', programmes);
             return programmes;
         } catch (error) {
             console.error('Erreur lors de la récupération des cours:', error);
