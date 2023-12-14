@@ -41,8 +41,9 @@ const useUtilisateur = () => {
 
     const getUtilisateurById = async (id) => {
         const resultat = await frontAPI.get(`/utilisateurs/${id}`)
-
-        return resultat.data.data
+        console.log("Resultat", resultat.data.Utilisateur)
+        
+        return resultat.data.Utilisateur
     }
 
     const supprimerUtilisateur = async (id) => {

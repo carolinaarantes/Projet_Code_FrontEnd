@@ -85,10 +85,14 @@ const rechercherProfil = async () => {
     }*/
 
     try {
-        const data = await getUtilisateurById(userId.value);
+        const data = await getUtilisateurById(userId.value?userId.value:id);
+       
         utilisateur.value = data;
-        isAdmin.value = utilisateur.value.role === 'administration';
+        console.log("Voici l'utilisateur", data)
+        console.log("ID",id)
+        isAdmin.value = utilisateur.value?.Role.categorie.toLowerCase() === 'administration';
         peuxAccederProfil.value = isAdmin.value;
+        console.log("Acces : ",peuxAccederProfil.value)
     } catch (err) {
         console.error('Erreur pendant la recherche du profil', err);
     }
@@ -98,9 +102,9 @@ const allerUpdateUtilisateur = async()=>{
 
 }
 
-onBeforeMount(() => {
+onBeforeMount(async() => {
     if (id) {
-        rechercherProfil();
+      await  rechercherProfil();
     }
 });
 

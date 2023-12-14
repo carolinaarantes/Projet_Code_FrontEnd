@@ -23,19 +23,18 @@
 
 <script setup>
 import { ref, reactive, onBeforeMount } from 'vue';
-
 // Recuperer les variable de chemin
 import { useRoute } from 'vue-router';
-const route = useRoute()
-console.log('route', route)
-const { id } = route.params
-
 // Fonction/Service qui permet de recuperer un horaire depuis la base de donnees
 import useHoraire from '../../services/serviceHoraire';
 
-const { getHoraireById } = useHoraire()
 
+const route = useRoute()
+console.log('route', route)
+const { id } = route.params
+const { getHoraireById } = useHoraire()
 const horaire = ref({})
+
 
 onBeforeMount(() => {
 
@@ -49,4 +48,7 @@ onBeforeMount(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style >
+
+
+</style>

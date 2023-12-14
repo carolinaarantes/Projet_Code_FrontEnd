@@ -56,7 +56,7 @@
                 <select v-model="utilisateur.programme" class="form-control" id="programme" style="width: 40vw;">
                     <option value="" disabled selected>Sélectionnez un programme</option>
                     <option v-for="programme in programmesFromDatabase" :key="programme.id" :value="programme.id">{{
-                        programme.nom }}</option>
+                        programme.nom_du_programme }}</option>
                 </select>
             </div>
 
@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watchEffect } from 'vue';
+import { ref, reactive, onMounted, watchEffect, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import useUtilisateur from '../../services/serviceUtilisateur';
 import useRole from '../../services/serviceRole';
@@ -260,9 +260,9 @@ watchEffect(() => {
 // Fonction pour charger les rôles depuis la base de données
 const chargerRoles = async () => {
     try {
-        const roles = await listeRoles();
-        console.log('Roles fetched:', rolesFromDatabase.value);
-         rolesFromDatabase.value = roles.map(roles => roles.categorie);
+        const roles = await listeRoles();        
+         rolesFromDatabase.value = roles;
+         console.log('Roles fetched:', roles);
     } catch (error) {
         console.error('Erreur lors du chargement des rôles', error);
     }
@@ -271,19 +271,24 @@ const chargerRoles = async () => {
 // Fonction pour charger les programmes depuis la base de données
 const chargerProgrammes = async () => {
     try {
-        const programmes = await listeProgrammes();
-        console.log('Programmes fetched:', rolesFromDatabase.value);
-        programmesFromDatabase.value = programmes.map(programmes => programmes.nom_du_programme);
+        const programmes = await listeProgrammes();        
+        programmesFromDatabase.value = programmes
+        console.log('Programmes fetched:', programmes);
+
     } catch (error) {
         console.error('Erreur lors du chargement des programmes', error);
     }
 };
-
-// Charger les données au moment du montage du composant
-onMounted(async () => {
+onBeforeMount(async()=>{
     await chargerRoles();
     await chargerProgrammes();
-});
+
+})
+
+// Charger les données au moment du montage du composant
+/*onMounted(async () => {
+    
+});*/
 
 </script>
 
